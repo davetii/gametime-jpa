@@ -5,13 +5,14 @@ Hibernate JPA + Spring Boot REST Server
 ##Todo
 * enable active/inactive flag
 * Implement GM -> Team
-* data.sql for Coach, GM, Player
 * Implement Conference
 * Implement Conference -> Team
 * data.sql for conference
 * Implement Player
 * Implement Player -> Team with active flag
 * Implemnt PlayerSkill calc
+* Implement H2 Runtime profile
+* Implement MySQL Runtime profile
 
 
 ##Questions/Issues
@@ -19,8 +20,12 @@ Hibernate JPA + Spring Boot REST Server
 
     
 ##Completed
-*  Generate the project
+* Generate the project
 * Build the project and configure for h2
 * Load H2 tables example
 * Implement Coach/Team relationship
+* Implement nullable fields
+* Create tests for Coach
+* Create tests for Team
+* Implement unique SQL dataloads for tests
 
