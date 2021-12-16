@@ -10,7 +10,7 @@ Hibernate JPA + Spring Boot REST Server
 * data.sql for conference
 * Implement Player
 * Implement Player -> Team with active flag
-* Implemnt PlayerSkill calc
+* Implement PlayerSkill calc
 * Implement H2 Runtime profile
 * Implement MySQL Runtime profile
 

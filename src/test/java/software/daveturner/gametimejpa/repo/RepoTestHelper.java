@@ -17,6 +17,15 @@ public class RepoTestHelper {
         return coach;
     }
 
+    public Coach newCoach(Long l, String firstName, String lastName, Team t) {
+        Coach coach = new Coach();
+        coach.setId(l);
+        coach.setFirstName(firstName);
+        coach.setLastName(lastName);
+        coach.setTeam(t);
+        return coach;
+    }
+
     public List findAll(CrudRepository<?, ?> repo) {
         return StreamSupport
                 .stream(repo.findAll().spliterator(), false)
