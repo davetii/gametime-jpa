@@ -27,5 +27,5 @@ Hibernate JPA + Spring Boot REST Server
 * Implement nullable fields
 * Create tests for Coach
 * Create tests for Team
-* Implement unique SQL dataloads for tests
+* isolated JPA unit tests
 
