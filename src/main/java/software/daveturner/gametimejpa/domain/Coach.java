@@ -10,7 +10,10 @@ public class Coach   {
 
   public Coach() { }
 
+  @Column(nullable = false)
   private String firstName;
+
+  @Column(nullable = false)
   private String lastName;
 
 
