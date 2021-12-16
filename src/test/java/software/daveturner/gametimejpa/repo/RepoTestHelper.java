@@ -2,6 +2,7 @@ package software.daveturner.gametimejpa.repo;
 
 import org.springframework.data.repository.CrudRepository;
 import software.daveturner.gametimejpa.domain.Coach;
+import software.daveturner.gametimejpa.domain.Team;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,5 +21,13 @@ public class RepoTestHelper {
         return StreamSupport
                 .stream(repo.findAll().spliterator(), false)
                 .collect(Collectors.toList());
+    }
+
+    public Team newTeam(String id, String locale, String name) {
+        Team team = new Team();
+        team.setId(id);
+        team.setLocale(locale);
+        team.setName(name);
+        return team;
     }
 }

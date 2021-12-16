@@ -19,6 +19,7 @@ public class Team   {
 
   @OneToOne(mappedBy = "team")
   private Coach coach;
+
   public Coach getCoach() {
     return coach;
   }
