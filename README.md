@@ -28,4 +28,5 @@ Hibernate JPA + Spring Boot REST Server
 * Create tests for Coach
 * Create tests for Team
 * isolated JPA unit tests
+* Added Tests for joins
 
