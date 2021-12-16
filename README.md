@@ -3,9 +3,6 @@ Hibernate JPA + Spring Boot REST Server
 
 
 ##Todo
-* Create tests for Coach
-* Create tests for Team
-* Implement unique SQL dataloads for tests
 * enable active/inactive flag
 * Implement GM -> Team
 * Implement Conference
@@ -28,4 +25,7 @@ Hibernate JPA + Spring Boot REST Server
 * Load H2 tables example
 * Implement Coach/Team relationship
 * Implement nullable fields
+* Create tests for Coach
+* Create tests for Team
+* Implement unique SQL dataloads for tests
 
