@@ -1,9 +1,6 @@
 package software.daveturner.gametimejpa.repo;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
@@ -31,7 +28,13 @@ public class CoachRepoTest {
     @BeforeEach
     public void setup() {
         panthers = helper.newTeam("MI", "Michigan", "Panthers");
-        coachBob = coachRepo.save(helper.newCoach("Bob", "Jones"));
+        coachBob = helper.newCoach("Bob", "Jones");
+    }
+
+    @AfterEach
+    public void cleanup() {
+        coachRepo.deleteAll();
+        teamRepo.deleteAll();
     }
 
     @Test
@@ -41,6 +44,8 @@ public class CoachRepoTest {
         assertEquals(list.get(0), newCoach);
         assertEquals(coachRepo.findById(newCoach.getId()).get(), newCoach);
     }
+
+
 
     @Test
     public void ensureTeamFieldIsPopulated() {
@@ -53,15 +58,17 @@ public class CoachRepoTest {
     }
 
     @Test
-    public void ensureTeamFieldIsPopulatedProperly() {
+    public void ensureMultipleCoachAssociatesTeamProperly() {
 
-        coachRepo.save(coachBob);
-        Long newId = 2l;
-        Coach alSmith = helper.newCoach(newId, "Al", "Smith", panthers);
-        coachRepo.save(alSmith);
+        Coach newCoach = coachRepo.save(coachBob);
+        Long bobId = newCoach.getId();
 
-        assertNull(coachRepo.findById(coachBob.getId()).get().getTeam());
-        assertNotNull(coachRepo.findById(newId).get().getTeam());
-        assertEquals(coachRepo.findById(newId).get().getTeam(), panthers);
+        assertNull(coachRepo.findById(bobId).get().getTeam());
+
+        Coach alSmith = helper.newCoach("Al", "Smith");
+        alSmith.setTeam(panthers);
+        Coach newCoach2 =  coachRepo.save(alSmith);
+        assertNotNull(coachRepo.findById(newCoach2.getId()).get().getTeam());
+        assertEquals(coachRepo.findById(newCoach2.getId()).get().getTeam(), panthers);
     }
 }
