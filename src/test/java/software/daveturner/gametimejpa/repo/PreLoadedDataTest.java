@@ -8,6 +8,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Coach;
+import software.daveturner.gametimejpa.domain.GM;
 import software.daveturner.gametimejpa.domain.Team;
 
 import java.util.Optional;
@@ -22,12 +23,16 @@ public class PreLoadedDataTest {
     @Autowired
     TeamRepo teamRepo;
 
+    @Autowired
+    GMRepo gmRepo;
+
     RepoTestHelper helper = new RepoTestHelper();
 
     @AfterEach
     public void cleanup() {
         coachRepo.deleteAll();
         teamRepo.deleteAll();
+        gmRepo.deleteAll();
     }
 
 
@@ -43,10 +48,20 @@ public class PreLoadedDataTest {
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensurePreLoadedGMDataExists() {
+        Optional<GM> joeDumas = gmRepo.findById(1l);
+        Assertions.assertTrue(joeDumas.isPresent());
+        Assertions.assertEquals("Panthers", joeDumas.get().getTeam().getName());
+    }
+
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedTeamDataExists() {
         Optional<Team> panthers = teamRepo.findById("MI");
         Assertions.assertTrue(panthers.isPresent());
         Assertions.assertEquals("Turner", panthers.get().getCoach().getLastName());
+        Assertions.assertEquals("Dumas", panthers.get().getGm().getLastName());
     }
 
     @Test
@@ -54,8 +69,10 @@ public class PreLoadedDataTest {
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensureAddTeamWorks() {
         Team chicago = helper.newTeam("CHI", "Chicacgo", "Blackhawks");
+        Team losAngeles = helper.newTeam("LA", "Los Angeles", "Kings");
         teamRepo.save(chicago);
-        Assertions.assertEquals(2, teamRepo.count());
+        teamRepo.save(losAngeles);
+        Assertions.assertEquals(3, teamRepo.count());
     }
 
 

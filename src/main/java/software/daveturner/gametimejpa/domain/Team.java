@@ -20,6 +20,10 @@ public class Team   {
   @JoinColumn(name = "coach_id", referencedColumnName = "id")
   private Coach coach;
 
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "gm_id", referencedColumnName = "id")
+  private GM gm;
+
   public Coach getCoach() {
     return coach;
   }
@@ -52,6 +56,8 @@ public class Team   {
     this.name = name;
   }
 
+  public GM getGm() { return gm; }
+  public void setGm(GM gm) { this.gm = gm; }
 
   @Override
   public boolean equals(Object o) {
