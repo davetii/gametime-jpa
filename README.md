@@ -3,7 +3,6 @@ Hibernate JPA + Spring Boot REST Server
 
 
 ##Todo
-* enable active/inactive flag
 * Implement GM -> Team
 * Implement Conference
 * Implement Conference -> Team
@@ -29,4 +28,8 @@ Hibernate JPA + Spring Boot REST Server
 * Create tests for Team
 * isolated JPA unit tests
 * Added Tests for joins
+
+Examples
+https://mkyong.com/hibernate/hibernate-many-to-many-example-join-table-extra-column-annotation/
+https://www.codejava.net/frameworks/hibernate/hibernate-many-to-many-association-with-extra-columns-in-join-table-example
 
