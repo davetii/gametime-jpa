@@ -2,6 +2,7 @@ package software.daveturner.gametimejpa.repo;
 
 import org.springframework.data.repository.CrudRepository;
 import software.daveturner.gametimejpa.domain.Coach;
+import software.daveturner.gametimejpa.domain.GM;
 import software.daveturner.gametimejpa.domain.Team;
 
 import java.util.List;
@@ -40,4 +41,10 @@ public class RepoTestHelper {
         return team;
     }
 
+    public GM newGM(String firstName, String lastName) {
+        GM gm = new GM();
+        gm.setFirstName(firstName);
+        gm.setLastName(lastName);
+        return gm;
+    }
 }
