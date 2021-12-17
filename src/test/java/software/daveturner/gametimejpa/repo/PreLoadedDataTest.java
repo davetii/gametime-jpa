@@ -15,11 +15,14 @@ import java.util.Optional;
 @SpringBootTest(classes = GametimeJpaApplication.class)
 public class PreLoadedDataTest {
 
+
     @Autowired
     CoachRepo coachRepo;
 
     @Autowired
     TeamRepo teamRepo;
+
+    RepoTestHelper helper = new RepoTestHelper();
 
     @AfterEach
     public void cleanup() {
@@ -45,4 +48,15 @@ public class PreLoadedDataTest {
         Assertions.assertTrue(panthers.isPresent());
         Assertions.assertEquals("Turner", panthers.get().getCoach().getLastName());
     }
+
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensureAddTeamWorks() {
+        Team chicago = helper.newTeam("CHI", "Chicacgo", "Blackhawks");
+        teamRepo.save(chicago);
+        Assertions.assertEquals(2, teamRepo.count());
+    }
+
+
 }

@@ -16,8 +16,8 @@ public class Team   {
   @Column(name = "id", nullable = false)
   private String id;
 
-
-  @OneToOne(mappedBy = "team")
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "coach_id", referencedColumnName = "id")
   private Coach coach;
 
   public Coach getCoach() {
@@ -26,6 +26,8 @@ public class Team   {
   public void setCoach(Coach coach) {
     this.coach = coach;
   }
+
+
 
   public Team() { }
 
@@ -70,7 +72,7 @@ public class Team   {
             "locale='" + locale + '\'' +
             ", name='" + name + '\'' +
             ", id='" + id + '\'' +
-            ", coach=" + coach +
+            //", coach=" + coach +
             '}';
   }
 }
