@@ -48,27 +48,32 @@ public class CoachRepoTest {
 
 
     @Test
-    public void ensureTeamFieldIsPopulated() {
+    public void ensureTeamFieldReturnsExpected() {
+
         Coach newCoach = coachRepo.save(coachBob);
         assertNull(coachRepo.findById(newCoach.getId()).get().getTeam());
-
+        panthers.setCoach(newCoach);
         coachBob.setTeam(panthers);
-        newCoach = coachRepo.save(coachBob);
-        assertEquals(coachRepo.findById(newCoach.getId()).get().getTeam(), panthers);
+        teamRepo.save(panthers);
+        Coach updatedCoach = coachRepo.save(coachBob);
+        assertEquals(coachRepo.findById(updatedCoach.getId()).get().getTeam(), panthers);
     }
 
     @Test
     public void ensureMultipleCoachAssociatesTeamProperly() {
 
-        Coach newCoach = coachRepo.save(coachBob);
-        Long bobId = newCoach.getId();
-
-        assertNull(coachRepo.findById(bobId).get().getTeam());
+        Coach stillCoachBob = coachRepo.save(coachBob);
+        assertNull(coachRepo.findById(stillCoachBob.getId()).get().getTeam());
 
         Coach alSmith = helper.newCoach("Al", "Smith");
         alSmith.setTeam(panthers);
+        panthers.setCoach(alSmith);
+
         Coach newCoach2 =  coachRepo.save(alSmith);
-        assertNotNull(coachRepo.findById(newCoach2.getId()).get().getTeam());
+        teamRepo.save(panthers);
         assertEquals(coachRepo.findById(newCoach2.getId()).get().getTeam(), panthers);
+        assertNull(coachRepo.findById(stillCoachBob.getId()).get().getTeam());
     }
+
+
 }

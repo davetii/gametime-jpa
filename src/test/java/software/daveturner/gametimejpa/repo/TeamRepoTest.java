@@ -1,6 +1,7 @@
 package software.daveturner.gametimejpa.repo;
 
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import software.daveturner.gametimejpa.domain.Coach;
 import software.daveturner.gametimejpa.domain.Team;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,18 +28,29 @@ public class TeamRepoTest {
 
     RepoTestHelper helper = new RepoTestHelper();
 
-    @Test
-    public void ensureTeamLoadReturnsExpected() {
-        Coach coachBob = coachRepo.save(helper.newCoach("Bob", "Jones"));
-        Team team = helper.newTeam("MI", "Michigan", "Panthers");
-        team.setCoach(coachBob);
-        teamRepo.save(team);
-        assertEquals(teamRepo.count(), 1);
-        List<Team> list = helper.findAll(teamRepo);
-        assertEquals(list.get(0), team);
-        assertNotNull(team.getCoach());
-        assertEquals(team.getCoach(), coachBob);
+    @AfterEach
+    public void cleanup() {
+        coachRepo.deleteAll();
+        teamRepo.deleteAll();
     }
 
+    @Test
+    public void verifyAPIWorksAsExpected() {
+        Coach coachBob = coachRepo.save(helper.newCoach("Bob", "Jones"));
+        Team newTeam = teamRepo.save( helper.newTeam("MI", "Michigan", "Panthers"));
+        assertEquals(teamRepo.count(), 1);
+        Assertions.assertNull(newTeam.getCoach());
+        newTeam.setCoach(coachBob);
+        newTeam = teamRepo.save(newTeam);
+        Assertions.assertNotNull(newTeam.getCoach());
 
+        List<Team> list = helper.findAll(teamRepo);
+        assertEquals(list.get(0), newTeam);
+        assertNotNull(list.get(0));
+        assertEquals(list.get(0).getCoach(), coachBob);
+
+        Optional<Team> sameTeam = teamRepo.findById("MI");
+        assertTrue(sameTeam.isPresent());
+        assertEquals(sameTeam.get(), newTeam);
+    }
 }

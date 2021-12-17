@@ -15,6 +15,7 @@ import java.util.Optional;
 @SpringBootTest(classes = GametimeJpaApplication.class)
 public class PreLoadedDataTest {
 
+    /*
     @Autowired
     CoachRepo coachRepo;
 
@@ -45,4 +46,6 @@ public class PreLoadedDataTest {
         Assertions.assertTrue(panthers.isPresent());
         Assertions.assertEquals("Turner", panthers.get().getCoach().getLastName());
     }
+    */
+
 }
