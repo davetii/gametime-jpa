@@ -3,9 +3,6 @@ Hibernate JPA + Spring Boot REST Server
 
 
 ##Todo
-* Implement Conference
-* Implement Conference -> Team
-* data.sql for conference
 * Implement Player
 * Implement Player -> Team with active flag
 * Implement PlayerSkill calc
@@ -18,6 +15,10 @@ Hibernate JPA + Spring Boot REST Server
 
     
 ##Completed
+* Implement Conference
+* Implement Conference -> Team
+* data.sql for conference
+* 
 * Implement GM -> Team
 * Added Tests for joins
 * Create isolated JPA unit tests
