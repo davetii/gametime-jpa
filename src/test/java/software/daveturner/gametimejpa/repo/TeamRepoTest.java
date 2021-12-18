@@ -3,11 +3,13 @@ package software.daveturner.gametimejpa.repo;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Coach;
+import software.daveturner.gametimejpa.domain.Conference;
 import software.daveturner.gametimejpa.domain.Team;
 
 import java.util.List;
@@ -27,6 +29,13 @@ public class TeamRepoTest {
     private CoachRepo coachRepo;
 
     RepoTestHelper helper = new RepoTestHelper();
+
+    private Conference newConference;
+
+    @BeforeEach
+    public void setup() {
+
+    }
 
     @AfterEach
     public void cleanup() {

@@ -14,6 +14,8 @@ import software.daveturner.gametimejpa.domain.Team;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENCE_ID;
+import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENCE_NAME;
 
 @SpringBootTest(classes = GametimeJpaApplication.class)
 public class ConferenceRepoTest {
@@ -26,8 +28,7 @@ public class ConferenceRepoTest {
 
     RepoTestHelper helper = new RepoTestHelper();
 
-    private final String conferenceId = "bob";
-    private final String conferenceName = "bobby";
+
     private Conference newConference;
     Team team1;
     Team team2;
@@ -36,8 +37,8 @@ public class ConferenceRepoTest {
     @BeforeEach
     public void setup() {
         newConference = new Conference();
-        newConference.setId(conferenceId);
-        newConference.setName(conferenceName);
+        newConference.setId(TEST_CONFERENCE_ID);
+        newConference.setName(TEST_CONFERENCE_NAME);
         conferenceRepo.save(newConference);
     }
 
@@ -50,13 +51,13 @@ public class ConferenceRepoTest {
     @Test
     public void ensureConferenceRepoInsertUpdateRead() {
         List<Conference> list = helper.findAll(conferenceRepo);
-        assertEquals(list.get(0).getId(), conferenceId);
-        assertEquals(conferenceRepo.findById(conferenceId).get().getName(), conferenceName);
+        assertEquals(list.get(0).getId(), TEST_CONFERENCE_ID);
+        assertEquals(conferenceRepo.findById(TEST_CONFERENCE_ID).get().getName(), TEST_CONFERENCE_NAME);
     }
 
     @Test
     public void ensureConferenceIsAddedToTeam() {
-        Assertions.assertNotNull(conferenceRepo.findById(conferenceId));
+        Assertions.assertNotNull(conferenceRepo.findById(TEST_CONFERENCE_ID));
 
         team1 = helper.newTeam("MI", "Michigan","Panthers", newConference);
         teamRepo.save(team1);
@@ -68,9 +69,9 @@ public class ConferenceRepoTest {
     }
 
     private void assertConferenceTeams(int conferenceSize, Team teamToFind) {
-        assertNotNull(conferenceRepo.findById(conferenceId));
-        assertEquals(conferenceSize, conferenceRepo.findById(conferenceId).get().getTeams().size());
-        assertTrue(conferenceRepo.findById(conferenceId).get().getTeams().contains(teamToFind));
+        assertNotNull(conferenceRepo.findById(TEST_CONFERENCE_ID));
+        assertEquals(conferenceSize, conferenceRepo.findById(TEST_CONFERENCE_ID).get().getTeams().size());
+        assertTrue(conferenceRepo.findById(TEST_CONFERENCE_ID).get().getTeams().contains(teamToFind));
     }
 
     @Test
@@ -83,7 +84,6 @@ public class ConferenceRepoTest {
         newConference.getTeams().add(team2);
         conferenceRepo.save(newConference);
         assertConferenceTeams(2, team2);
-        
     }
 
 }
