@@ -1,23 +1,25 @@
 package software.daveturner.gametimejpa.domain;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "team")
 public class Team   {
 
+  @Column(nullable = false)
   private String locale;
+  @Column(nullable = false)
   private String name;
 
   @Id
-  @Column(name = "id")
+  @Column(name = "id", nullable = false)
   private String id;
 
-
-  @OneToOne(mappedBy = "team")
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "coach_id", referencedColumnName = "id")
   private Coach coach;
+
   public Coach getCoach() {
     return coach;
   }
@@ -36,13 +38,13 @@ public class Team   {
     return id;
   }
 
-
   public String getLocale() {
     return locale;
   }
   public void setLocale(String locale) {
     this.locale = locale;
   }
+
   public String getName() {
     return name;
   }
@@ -70,7 +72,7 @@ public class Team   {
             "locale='" + locale + '\'' +
             ", name='" + name + '\'' +
             ", id='" + id + '\'' +
-            ", coach=" + coach +
+            //", coach=" + coach +
             '}';
   }
 }

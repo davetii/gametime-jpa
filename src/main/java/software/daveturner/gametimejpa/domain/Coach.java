@@ -10,31 +10,25 @@ public class Coach   {
 
   public Coach() { }
 
+  @Column(nullable = false)
   private String firstName;
+
+  @Column(nullable = false)
   private String lastName;
 
-
-  @OneToOne(cascade = CascadeType.ALL)
-  @JoinTable(name = "team_coach",
-          joinColumns =
-                  { @JoinColumn(name = "coach_id", referencedColumnName = "id") },
-          inverseJoinColumns =
-                  { @JoinColumn(name = "team_id", referencedColumnName = "id") })
+  @OneToOne(cascade = CascadeType.ALL, mappedBy = "coach")
   private Team team;
 
   public Team getTeam() {
     return team;
   }
-
   public void setTeam(Team team) {
     this.team = team;
   }
 
 
-
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "id")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   public Long getId() { return id; }
