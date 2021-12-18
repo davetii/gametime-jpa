@@ -9,11 +9,17 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Coach;
 import software.daveturner.gametimejpa.domain.GM;
+import software.daveturner.gametimejpa.domain.Player;
 import software.daveturner.gametimejpa.domain.Team;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-@SpringBootTest(classes = GametimeJpaApplication.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@SpringBootTest
 public class PreLoadedDataTest {
 
 
@@ -27,12 +33,16 @@ public class PreLoadedDataTest {
     GMRepo gmRepo;
 
     @Autowired
+    PlayerRepo playerRepo;
+
+    @Autowired
     ConferenceRepo conferenceRepo;
 
     RepoTestHelper helper = new RepoTestHelper();
 
     @AfterEach
     public void cleanup() {
+        playerRepo.deleteAll();
         teamRepo.deleteAll();
         gmRepo.deleteAll();
         coachRepo.deleteAll();
@@ -45,8 +55,8 @@ public class PreLoadedDataTest {
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedCoachDataExists() {
         Optional<Coach> frankValcone = coachRepo.findById(2l);
-        Assertions.assertTrue(frankValcone.isPresent());
-        Assertions.assertEquals("Fastbacks", frankValcone.get().getTeam().getName());
+        assertTrue(frankValcone.isPresent());
+        assertEquals("Fastbacks", frankValcone.get().getTeam().getName());
     }
 
     @Test
@@ -54,8 +64,8 @@ public class PreLoadedDataTest {
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedGMDataExists() {
         Optional<GM> donSchmidt = gmRepo.findById(10l);
-        Assertions.assertTrue(donSchmidt.isPresent());
-        Assertions.assertEquals("Gators", donSchmidt.get().getTeam().getName());
+        assertTrue(donSchmidt.isPresent());
+        assertEquals("Gators", donSchmidt.get().getTeam().getName());
     }
 
     @Test
@@ -63,20 +73,31 @@ public class PreLoadedDataTest {
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedTeamDataExists() {
         Optional<Team> panthers = teamRepo.findById("MI");
-        Assertions.assertTrue(panthers.isPresent());
-        Assertions.assertEquals("Jones", panthers.get().getCoach().getLastName());
-        Assertions.assertEquals("Becken", panthers.get().getGm().getLastName());
+        assertTrue(panthers.isPresent());
+        assertEquals("Jones", panthers.get().getCoach().getLastName());
+        assertEquals("Becken", panthers.get().getGm().getLastName());
     }
 
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensureALLEntitiesAreLoaded() {
-        Assertions.assertEquals(40, teamRepo.count());
-        Assertions.assertEquals(40, coachRepo.count());
-        Assertions.assertEquals(40, gmRepo.count());
-        Assertions.assertEquals(4, conferenceRepo.count());
+        assertEquals(40, teamRepo.count());
+        assertEquals(40, coachRepo.count());
+        assertEquals(40, gmRepo.count());
+        assertEquals(4, conferenceRepo.count());
+        assertEquals(558, playerRepo.count());
     }
+
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensureTeamReturnsExpectedPlayers() {
+        assertEquals(13, teamRepo.findById("MI").get().getPlayers().size());
+        assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById(999l).get()));
+    }
+
+
 
 
 }

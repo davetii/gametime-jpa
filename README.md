@@ -4,9 +4,11 @@ Hibernate JPA + Spring Boot REST Server
 
 ##Todo
 * Implement Player
-* Implement Player -> Team with active flag
+* Implement Player -> Team
 * Implement PlayerSkill calc
 * Implement H2 Runtime profile
+* Implement Rest front ends
+* being Historical data support
 * Implement MySQL Runtime profile
 
 

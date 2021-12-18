@@ -38,7 +38,7 @@ public class CoachRepoTest {
     }
 
     @Test
-    public void ensureSuccessfulSaveReturnsExpected() {
+    public void ensureSaveReturnsExpected() {
         Coach newCoach = coachRepo.save(helper.newCoach("Bob", "Jones"));
         List<Coach> list = helper.findAll(coachRepo);
         assertEquals(list.get(0), newCoach);
@@ -48,7 +48,7 @@ public class CoachRepoTest {
 
 
     @Test
-    public void ensureTeamFieldReturnsExpected() {
+    public void ensureAddTeamReturnsExpected() {
 
         Coach newCoach = coachRepo.save(coachBob);
         assertNull(coachRepo.findById(newCoach.getId()).get().getTeam());
@@ -60,7 +60,7 @@ public class CoachRepoTest {
     }
 
     @Test
-    public void ensureMultipleCoachAssociatesTeamProperly() {
+    public void ensureMultipleCoachAddsToTeamReturnsExpected() {
 
         Coach stillCoachBob = coachRepo.save(coachBob);
         assertNull(coachRepo.findById(stillCoachBob.getId()).get().getTeam());

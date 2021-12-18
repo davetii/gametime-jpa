@@ -1,7 +1,9 @@
 package software.daveturner.gametimejpa.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "team")
@@ -19,6 +21,9 @@ public class Team   {
   @ManyToOne
   @JoinColumn(name="conference_id", nullable=true)
   private Conference conference;
+
+  @OneToMany(fetch = FetchType.EAGER, mappedBy="team")
+  private Set<Player> players = new HashSet<>();
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "coach_id", referencedColumnName = "id")
@@ -69,6 +74,14 @@ public class Team   {
 
   public void setConference(Conference conference) {
     this.conference = conference;
+  }
+
+  public Set<Player> getPlayers() {
+    return players;
+  }
+
+  public void setPlayers(Set<Player> players) {
+    this.players = players;
   }
 
   @Override
