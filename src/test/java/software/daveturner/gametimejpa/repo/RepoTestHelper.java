@@ -1,7 +1,9 @@
 package software.daveturner.gametimejpa.repo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import software.daveturner.gametimejpa.domain.Coach;
+import software.daveturner.gametimejpa.domain.Conference;
 import software.daveturner.gametimejpa.domain.GM;
 import software.daveturner.gametimejpa.domain.Team;
 
@@ -10,6 +12,13 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class RepoTestHelper {
+
+
+    @Autowired
+    ConferenceRepo conferenceRepo;
+
+    public static final String TEST_CONFERENCE_ID = "bob";
+    public static final String TEST_CONFERENCE_NAME = "bobby";
 
     public Coach newCoach(String firstName, String lastName) {
         Coach coach = new Coach();
@@ -38,6 +47,15 @@ public class RepoTestHelper {
         team.setId(id);
         team.setLocale(locale);
         team.setName(name);
+        return team;
+    }
+
+    public Team newTeam(String id, String locale, String name, Conference conf) {
+        Team team = new Team();
+        team.setId(id);
+        team.setLocale(locale);
+        team.setName(name);
+        team.setConference(conf);
         return team;
     }
 
