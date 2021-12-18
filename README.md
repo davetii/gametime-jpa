@@ -15,6 +15,8 @@ Hibernate JPA + Spring Boot REST Server
 
     
 ##Completed
+* Implemented Status Enum
+* Implemented Position
 * Implement Player
 * Implement Player -> Team
 * setup all preloads tests for conference to Team

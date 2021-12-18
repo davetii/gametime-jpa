@@ -17,7 +17,9 @@ public class Player {
     @Enumerated(EnumType.STRING)
     private Position position;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     private String height;
     private Integer weight;
     private Integer yearsPro;
@@ -248,8 +250,8 @@ public class Player {
         this.strength = strength;
     }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
 
     @Override
     public boolean equals(Object o) {
@@ -273,7 +275,7 @@ public class Player {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", position='" + position + '\'' +
-                ", status='" + status + '\'' +
+                ", role='" + role + '\'' +
                 ", height='" + height + '\'' +
                 ", weight=" + weight +
                 ", yearsPro=" + yearsPro +
