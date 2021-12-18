@@ -13,7 +13,7 @@ import software.daveturner.gametimejpa.domain.Team;
 
 import java.util.Optional;
 
-@SpringBootTest(classes = GametimeJpaApplication.class)
+@SpringBootTest
 public class PreLoadedDataTest {
 
 
