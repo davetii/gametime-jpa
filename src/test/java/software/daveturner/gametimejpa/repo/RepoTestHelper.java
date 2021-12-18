@@ -2,10 +2,7 @@ package software.daveturner.gametimejpa.repo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
-import software.daveturner.gametimejpa.domain.Coach;
-import software.daveturner.gametimejpa.domain.Conference;
-import software.daveturner.gametimejpa.domain.GM;
-import software.daveturner.gametimejpa.domain.Team;
+import software.daveturner.gametimejpa.domain.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,6 +31,13 @@ public class RepoTestHelper {
         coach.setLastName(lastName);
         coach.setTeam(t);
         return coach;
+    }
+
+    public Player newPlayer(String firstName, String lastName) {
+        Player player = new Player();
+        player.setFirstName(firstName);
+        player.setLastName(lastName);
+        return player;
     }
 
     public List findAll(CrudRepository<?, ?> repo) {

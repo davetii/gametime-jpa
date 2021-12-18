@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Entity
 public class Player {
 
-        public Player() { }
+    public Player() { }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +14,14 @@ public class Player {
     private String firstName;
     private String lastName;
     private String position;
+    private String status;
     private String height;
     private Integer weight;
     private Integer yearsPro;
     private String origin;
+    private String originDetails;
 
-    private Integer athleticsm;
+    private Integer athleticism;
     private Integer charisma;
     private Integer cohesion;
     private Integer determination;
@@ -35,6 +37,8 @@ public class Player {
     private Integer size;
     private Integer speed;
     private Integer strength;
+
+
 
     @ManyToOne
     @JoinColumn(name="team_id", nullable=true)
@@ -112,12 +116,15 @@ public class Player {
         this.origin = origin;
     }
 
-    public Integer getAthleticsm() {
-        return athleticsm;
+    public String getOriginDetails() { return originDetails; }
+    public void setOriginDetails(String originDetails) { this.originDetails = originDetails; }
+
+    public Integer getAthleticism() {
+        return athleticism;
     }
 
-    public void setAthleticsm(Integer athleticsm) {
-        this.athleticsm = athleticsm;
+    public void setAthleticism(Integer athleticism) {
+        this.athleticism = athleticism;
     }
 
     public Integer getCharisma() {
@@ -227,7 +234,6 @@ public class Player {
     public Integer getSpeed() {
         return speed;
     }
-
     public void setSpeed(Integer speed) {
         this.speed = speed;
     }
@@ -235,10 +241,12 @@ public class Player {
     public Integer getStrength() {
         return strength;
     }
-
     public void setStrength(Integer strength) {
         this.strength = strength;
     }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
 
     @Override
     public boolean equals(Object o) {
@@ -253,5 +261,38 @@ public class Player {
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                ", status='" + status + '\'' +
+                ", height='" + height + '\'' +
+                ", weight=" + weight +
+                ", yearsPro=" + yearsPro +
+                ", origin='" + origin + '\'' +
+                ", originDetails='" + originDetails + '\'' +
+                ", athleticism=" + athleticism +
+                ", charisma=" + charisma +
+                ", cohesion=" + cohesion +
+                ", determination=" + determination +
+                ", ego=" + ego +
+                ", endurance=" + endurance +
+                ", energy=" + energy +
+                ", handle=" + handle +
+                ", health=" + health +
+                ", intelligence=" + intelligence +
+                ", luck=" + luck +
+                ", shotSelection=" + shotSelection +
+                ", shotSkill=" + shotSkill +
+                ", size=" + size +
+                ", speed=" + speed +
+                ", strength=" + strength +
+                ", team=" + team +
+                '}';
     }
 }

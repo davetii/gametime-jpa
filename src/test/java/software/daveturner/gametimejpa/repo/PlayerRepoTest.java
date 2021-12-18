@@ -25,9 +25,7 @@ public class PlayerRepoTest {
 
     @BeforeEach
     public void setup() {
-        player = new Player();
-        player.setFirstName("Test");
-        player.setLastName("Player1");
+        player = helper.newPlayer("Test", "Player1");
         player = playerRepo.save(player);
     }
 
