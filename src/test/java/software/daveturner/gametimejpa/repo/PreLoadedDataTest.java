@@ -26,13 +26,17 @@ public class PreLoadedDataTest {
     @Autowired
     GMRepo gmRepo;
 
+    @Autowired
+    ConferenceRepo conferenceRepo;
+
     RepoTestHelper helper = new RepoTestHelper();
 
     @AfterEach
     public void cleanup() {
-        coachRepo.deleteAll();
         teamRepo.deleteAll();
         gmRepo.deleteAll();
+        coachRepo.deleteAll();
+        conferenceRepo.deleteAll();
     }
 
 
@@ -40,18 +44,18 @@ public class PreLoadedDataTest {
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedCoachDataExists() {
-        Optional<Coach> daveTurner = coachRepo.findById(1l);
-        Assertions.assertTrue(daveTurner.isPresent());
-        Assertions.assertEquals("Panthers", daveTurner.get().getTeam().getName());
+        Optional<Coach> frankValcone = coachRepo.findById(2l);
+        Assertions.assertTrue(frankValcone.isPresent());
+        Assertions.assertEquals("Fastbacks", frankValcone.get().getTeam().getName());
     }
 
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedGMDataExists() {
-        Optional<GM> joeDumas = gmRepo.findById(1l);
-        Assertions.assertTrue(joeDumas.isPresent());
-        Assertions.assertEquals("Panthers", joeDumas.get().getTeam().getName());
+        Optional<GM> donSchmidt = gmRepo.findById(10l);
+        Assertions.assertTrue(donSchmidt.isPresent());
+        Assertions.assertEquals("Gators", donSchmidt.get().getTeam().getName());
     }
 
     @Test
@@ -60,19 +64,18 @@ public class PreLoadedDataTest {
     public void ensurePreLoadedTeamDataExists() {
         Optional<Team> panthers = teamRepo.findById("MI");
         Assertions.assertTrue(panthers.isPresent());
-        Assertions.assertEquals("Turner", panthers.get().getCoach().getLastName());
-        Assertions.assertEquals("Dumas", panthers.get().getGm().getLastName());
+        Assertions.assertEquals("Jones", panthers.get().getCoach().getLastName());
+        Assertions.assertEquals("Becken", panthers.get().getGm().getLastName());
     }
 
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
-    public void ensureAddTeamWorks() {
-        Team chicago = helper.newTeam("CHI", "Chicacgo", "Blackhawks");
-        Team losAngeles = helper.newTeam("LA", "Los Angeles", "Kings");
-        teamRepo.save(chicago);
-        teamRepo.save(losAngeles);
-        Assertions.assertEquals(3, teamRepo.count());
+    public void ensureALLEntitiesAreLoaded() {
+        Assertions.assertEquals(40, teamRepo.count());
+        Assertions.assertEquals(40, coachRepo.count());
+        Assertions.assertEquals(40, gmRepo.count());
+        Assertions.assertEquals(4, conferenceRepo.count());
     }
 
 

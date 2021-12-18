@@ -15,10 +15,10 @@ Hibernate JPA + Spring Boot REST Server
 
     
 ##Completed
+* setup all preloads tests for conference to Team
 * Implement Conference
 * Implement Conference -> Team
 * data.sql for conference
-* 
 * Implement GM -> Team
 * Added Tests for joins
 * Create isolated JPA unit tests
