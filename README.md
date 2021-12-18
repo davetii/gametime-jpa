@@ -3,10 +3,6 @@ Hibernate JPA + Spring Boot REST Server
 
 
 ##Todo
-* Implement GM -> Team
-* Implement Conference
-* Implement Conference -> Team
-* data.sql for conference
 * Implement Player
 * Implement Player -> Team with active flag
 * Implement PlayerSkill calc
@@ -19,15 +15,18 @@ Hibernate JPA + Spring Boot REST Server
 
     
 ##Completed
-* Generate the project
-* Build the project and configure for h2
-* Load H2 tables example
-* Implement Coach/Team relationship
-* Implement nullable fields
-* Create tests for Coach
-* Create tests for Team
-* isolated JPA unit tests
+* setup all preloads tests for conference to Team
+* Implement Conference
+* Implement Conference -> Team
+* data.sql for conference
+* Implement GM -> Team
 * Added Tests for joins
+* Create isolated JPA unit tests
+* isolated JPA unit tests
+* Implement Coach/Team relationship
+* Load H2 tables example
+* Generate the project and configure for h2
+
 
 Examples
 https://mkyong.com/hibernate/hibernate-many-to-many-example-join-table-extra-column-annotation/

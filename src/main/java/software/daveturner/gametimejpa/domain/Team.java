@@ -16,9 +16,17 @@ public class Team   {
   @Column(name = "id", nullable = false)
   private String id;
 
+  @ManyToOne
+  @JoinColumn(name="conference_id", nullable=true)
+  private Conference conference;
+
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "coach_id", referencedColumnName = "id")
   private Coach coach;
+
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "gm_id", referencedColumnName = "id")
+  private GM gm;
 
   public Coach getCoach() {
     return coach;
@@ -52,6 +60,16 @@ public class Team   {
     this.name = name;
   }
 
+  public GM getGm() { return gm; }
+  public void setGm(GM gm) { this.gm = gm; }
+
+  public Conference getConference() {
+    return conference;
+  }
+
+  public void setConference(Conference conference) {
+    this.conference = conference;
+  }
 
   @Override
   public boolean equals(Object o) {
