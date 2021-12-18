@@ -13,7 +13,10 @@ public class Player {
     private Long id;
     private String firstName;
     private String lastName;
-    private String position;
+
+    @Enumerated(EnumType.STRING)
+    private Position position;
+
     private String status;
     private String height;
     private Integer weight;
@@ -76,11 +79,11 @@ public class Player {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Player;
+import software.daveturner.gametimejpa.domain.Position;
 import software.daveturner.gametimejpa.domain.Team;
 
 @SpringBootTest(classes = GametimeJpaApplication.class)
@@ -26,6 +27,7 @@ public class PlayerRepoTest {
     @BeforeEach
     public void setup() {
         player = helper.newPlayer("Test", "Player1");
+        player.setPosition(Position.PG);
         player = playerRepo.save(player);
     }
 
@@ -37,7 +39,10 @@ public class PlayerRepoTest {
 
     @Test
     public void ensureAPIReturnsExpected() {
+
         Assertions.assertEquals(1, playerRepo.count());
+        Assertions.assertEquals(Position.PG, playerRepo.findById(player.getId()).get().getPosition());
+
     }
 
     @Test
