@@ -3,9 +3,9 @@ Hibernate JPA + Spring Boot REST Server
 
 
 ##Todo
+* Implement Rest front ends
 * Implement PlayerSkill calc
 * Implement H2 Runtime profile
-* Implement Rest front ends
 * being Historical data support
 * Implement MySQL Runtime profile
 
@@ -15,8 +15,8 @@ Hibernate JPA + Spring Boot REST Server
 
     
 ##Completed
-* Implemented Status Enum
-* Implemented Position
+* Implemented Role Enum
+* Implemented Position Enum
 * Implement Player
 * Implement Player -> Team
 * setup all preloads tests for conference to Team
