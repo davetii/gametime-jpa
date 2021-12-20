@@ -1,7 +1,6 @@
 package software.daveturner.gametimejpa.domain;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
 public enum Position {
@@ -19,9 +18,9 @@ public enum Position {
 
     @Id
     @Column(name = "id", nullable = false)
-    public String id;
-    public String name;
-    public int sort;
+    public final String id;
+    public final String name;
+    public final int sort;
     Position(String id, String name, int sort) {
         this.id = id;
         this.name = name;

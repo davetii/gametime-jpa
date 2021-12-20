@@ -1,13 +1,11 @@
 package software.daveturner.gametimejpa.repo;
 
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Conference;
 import software.daveturner.gametimejpa.domain.Team;
 
@@ -27,7 +25,7 @@ public class ConferenceRepoTest {
     @Autowired
     TeamRepo teamRepo;
 
-    RepoTestHelper helper = new RepoTestHelper();
+    private final RepoTestHelper helper = new RepoTestHelper();
 
 
     private Conference newConference;

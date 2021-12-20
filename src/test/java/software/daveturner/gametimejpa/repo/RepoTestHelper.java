@@ -1,6 +1,5 @@
 package software.daveturner.gametimejpa.repo;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import software.daveturner.gametimejpa.domain.*;
 
@@ -9,10 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public class RepoTestHelper {
-
-
-    @Autowired
-    ConferenceRepo conferenceRepo;
 
     public static final String TEST_CONFERENCE_ID = "bob";
     public static final String TEST_CONFERENCE_NAME = "bobby";

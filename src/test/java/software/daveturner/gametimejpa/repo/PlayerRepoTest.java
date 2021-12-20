@@ -2,20 +2,13 @@ package software.daveturner.gametimejpa.repo;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Player;
-import software.daveturner.gametimejpa.domain.Position;
-import software.daveturner.gametimejpa.domain.Role;
 import software.daveturner.gametimejpa.domain.Team;
 
 import javax.transaction.Transactional;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 import static software.daveturner.gametimejpa.domain.Position.PG;
 import static software.daveturner.gametimejpa.domain.Role.STARTER;
@@ -29,12 +22,7 @@ public class PlayerRepoTest {
     @Autowired
     TeamRepo teamRepo;
 
-    RepoTestHelper helper = new RepoTestHelper();
-
-    @BeforeEach
-    public void setup() {
-
-    }
+    private final RepoTestHelper helper = new RepoTestHelper();
 
     @AfterEach
     public void cleanup() {
