@@ -108,6 +108,7 @@ public class PreLoadedDataTest {
         Player tonyHawk = playerRepo.findById(999l).get();
         assertEquals(tonyHawk.getPosition(), PG);
         assertEquals(tonyHawk.getRole(), STARTER);
+
     }
 
 
