@@ -3,7 +3,6 @@ package software.daveturner.gametimejpa.repo;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Coach;
 import software.daveturner.gametimejpa.domain.Team;
 
@@ -20,7 +19,7 @@ public class CoachRepoTest {
     @Autowired
     private TeamRepo teamRepo;
 
-    RepoTestHelper helper = new RepoTestHelper();
+    private final RepoTestHelper helper = new RepoTestHelper();
 
     Team panthers;
     Coach coachBob;

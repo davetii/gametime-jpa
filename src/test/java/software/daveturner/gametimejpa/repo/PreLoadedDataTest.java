@@ -1,15 +1,11 @@
 package software.daveturner.gametimejpa.repo;
 
 
-import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestExecution;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import org.springframework.transaction.annotation.Transactional;
 import software.daveturner.gametimejpa.domain.*;
 
 import java.util.Optional;
@@ -54,7 +50,7 @@ public class PreLoadedDataTest {
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedCoachDataExists() {
 
-        Optional<Coach> frankValcone = coachRepo.findById(2l);
+        Optional<Coach> frankValcone = coachRepo.findById(2L);
         assertTrue(frankValcone.isPresent());
         assertEquals("Fastbacks", frankValcone.get().getTeam().getName());
     }
@@ -63,7 +59,7 @@ public class PreLoadedDataTest {
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedGMDataExists() {
-        Optional<GM> donSchmidt = gmRepo.findById(10l);
+        Optional<GM> donSchmidt = gmRepo.findById(10L);
         assertTrue(donSchmidt.isPresent());
         assertEquals("Gators", donSchmidt.get().getTeam().getName());
     }
@@ -104,7 +100,7 @@ public class PreLoadedDataTest {
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePlayerReturnsExpected() {
-        Player tonyHawk = playerRepo.findById(999l).get();
+        Player tonyHawk = playerRepo.findById(999L).get();
         assertEquals(tonyHawk.getPosition(), PG);
         assertEquals(tonyHawk.getRole(), STARTER);
 

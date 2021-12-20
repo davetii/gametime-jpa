@@ -1,6 +1,5 @@
 package software.daveturner.gametimejpa.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +18,11 @@ import java.util.Optional;
 @RestController
 public class V1ApiController {
 
-    @Autowired
-    V1ApiService apiService;
+    private final V1ApiService apiService;
+
+    public V1ApiController(V1ApiService apiService) {
+        this.apiService = apiService;
+    }
 
     @GetMapping("/league")
     public ResponseEntity<List<Conference>> getLeague() {

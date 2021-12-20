@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.GM;
 import software.daveturner.gametimejpa.domain.Team;
 
@@ -22,7 +21,7 @@ public class GMRepoTest {
     @Autowired
     private GMRepo gmRepo;
 
-    RepoTestHelper helper = new RepoTestHelper();
+    private final RepoTestHelper helper = new RepoTestHelper();
 
     Team panthers;
     GM gmBob;
