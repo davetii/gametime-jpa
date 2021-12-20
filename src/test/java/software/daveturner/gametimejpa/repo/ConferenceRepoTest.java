@@ -11,6 +11,7 @@ import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Conference;
 import software.daveturner.gametimejpa.domain.Team;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,6 +19,7 @@ import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENC
 import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENCE_NAME;
 
 @SpringBootTest(classes = GametimeJpaApplication.class)
+@Transactional // needed to avoid dumbass LazyLoad JPA/Hibernate issue
 public class ConferenceRepoTest {
 
     @Autowired
