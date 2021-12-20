@@ -45,6 +45,7 @@ public class TeamRepoTest {
 
     @AfterEach
     public void cleanup() {
+        helper.cleanupAllRepos();
         coachRepo.deleteAll();
         playerRepo.deleteAll();
         teamRepo.deleteAll();

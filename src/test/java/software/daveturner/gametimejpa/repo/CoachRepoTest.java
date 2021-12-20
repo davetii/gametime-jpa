@@ -33,8 +33,10 @@ public class CoachRepoTest {
 
     @AfterEach
     public void cleanup() {
-        coachRepo.deleteAll();
+        helper.cleanupAllRepos();
         teamRepo.deleteAll();
+        coachRepo.deleteAll();
+
     }
 
     @Test

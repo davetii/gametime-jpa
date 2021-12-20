@@ -1,10 +1,7 @@
 package software.daveturner.gametimejpa.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -21,13 +18,12 @@ public class Team   {
   @Column(name = "id", nullable = false)
   private String id;
 
-  @JsonBackReference
-  @ManyToOne
+  @ManyToOne(fetch =  FetchType.LAZY)
   @JoinColumn(name="conference_id", nullable=true)
   private Conference conference;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy="team")
-  private Set<Player> players = new LinkedHashSet<>();
+  private Set<Player> players = new HashSet<>();
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "coach_id", referencedColumnName = "id")
@@ -107,7 +103,7 @@ public class Team   {
             "locale='" + locale + '\'' +
             ", name='" + name + '\'' +
             ", id='" + id + '\'' +
-            ", coach=" + coach +
+            //", coach=" + coach +
             '}';
   }
 }
