@@ -1,5 +1,7 @@
 package software.daveturner.gametimejpa.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 
@@ -13,8 +15,13 @@ public class Player {
     private Long id;
     private String firstName;
     private String lastName;
-    private String position;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private Position position;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     private String height;
     private Integer weight;
     private Integer yearsPro;
@@ -39,8 +46,8 @@ public class Player {
     private Integer strength;
 
 
-
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="team_id", nullable=true)
     private Team team;
 
@@ -76,11 +83,11 @@ public class Player {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -245,8 +252,8 @@ public class Player {
         this.strength = strength;
     }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
 
     @Override
     public boolean equals(Object o) {
@@ -270,7 +277,7 @@ public class Player {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", position='" + position + '\'' +
-                ", status='" + status + '\'' +
+                ", role='" + role + '\'' +
                 ", height='" + height + '\'' +
                 ", weight=" + weight +
                 ", yearsPro=" + yearsPro +
@@ -292,7 +299,6 @@ public class Player {
                 ", size=" + size +
                 ", speed=" + speed +
                 ", strength=" + strength +
-                ", team=" + team +
                 '}';
     }
 }

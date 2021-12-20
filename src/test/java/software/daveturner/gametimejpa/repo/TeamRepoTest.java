@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Coach;
 import software.daveturner.gametimejpa.domain.Conference;
@@ -71,6 +72,7 @@ public class TeamRepoTest {
     }
 
     @Test
+    @Transactional
     public void ensurePlayersAreReturnedForTeams() {
         Team newTeam = teamRepo.save( helper.newTeam("MI", "Michigan", "Panthers"));
         Player player1 = helper.newPlayer("Test", "Player1");

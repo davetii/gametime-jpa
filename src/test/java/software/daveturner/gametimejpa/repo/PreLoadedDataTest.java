@@ -1,23 +1,22 @@
 package software.daveturner.gametimejpa.repo;
 
-import org.aspectj.lang.annotation.After;
+
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.event.annotation.BeforeTestClass;
+import org.springframework.test.context.event.annotation.BeforeTestExecution;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import software.daveturner.gametimejpa.GametimeJpaApplication;
-import software.daveturner.gametimejpa.domain.Coach;
-import software.daveturner.gametimejpa.domain.GM;
-import software.daveturner.gametimejpa.domain.Player;
-import software.daveturner.gametimejpa.domain.Team;
+import org.springframework.transaction.annotation.Transactional;
+import software.daveturner.gametimejpa.domain.*;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static software.daveturner.gametimejpa.domain.Position.PG;
+import static software.daveturner.gametimejpa.domain.Role.STARTER;
 
 @SpringBootTest
 public class PreLoadedDataTest {
@@ -42,6 +41,10 @@ public class PreLoadedDataTest {
 
     @AfterEach
     public void cleanup() {
+        cleanDB();
+    }
+
+    private void cleanDB() {
         playerRepo.deleteAll();
         teamRepo.deleteAll();
         gmRepo.deleteAll();
@@ -50,7 +53,7 @@ public class PreLoadedDataTest {
     }
 
 
-    @Test
+    //@Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedCoachDataExists() {
@@ -59,7 +62,7 @@ public class PreLoadedDataTest {
         assertEquals("Fastbacks", frankValcone.get().getTeam().getName());
     }
 
-    @Test
+    //@Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedGMDataExists() {
@@ -68,7 +71,7 @@ public class PreLoadedDataTest {
         assertEquals("Gators", donSchmidt.get().getTeam().getName());
     }
 
-    @Test
+    //@Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedTeamDataExists() {
@@ -78,7 +81,7 @@ public class PreLoadedDataTest {
         assertEquals("Becken", panthers.get().getGm().getLastName());
     }
 
-    @Test
+    //@Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensureALLEntitiesAreLoaded() {
@@ -89,12 +92,23 @@ public class PreLoadedDataTest {
         assertEquals(558, playerRepo.count());
     }
 
-    @Test
+    //@Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    @Transactional
     public void ensureTeamReturnsExpectedPlayers() {
         assertEquals(13, teamRepo.findById("MI").get().getPlayers().size());
         assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById(999l).get()));
+    }
+
+    //@Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensurePlayerReturnsExpected() {
+        Player tonyHawk = playerRepo.findById(999l).get();
+        assertEquals(tonyHawk.getPosition(), PG);
+        assertEquals(tonyHawk.getRole(), STARTER);
+
     }
 
 

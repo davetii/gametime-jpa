@@ -3,8 +3,6 @@ Hibernate JPA + Spring Boot REST Server
 
 
 ##Todo
-* Implement Player
-* Implement Player -> Team
 * Implement PlayerSkill calc
 * Implement H2 Runtime profile
 * Implement Rest front ends
@@ -17,6 +15,10 @@ Hibernate JPA + Spring Boot REST Server
 
     
 ##Completed
+* Implemented Status Enum
+* Implemented Position
+* Implement Player
+* Implement Player -> Team
 * setup all preloads tests for conference to Team
 * Implement Conference
 * Implement Conference -> Team

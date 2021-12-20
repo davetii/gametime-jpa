@@ -1,6 +1,8 @@
 package software.daveturner.gametimejpa.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -16,6 +18,7 @@ public class Coach   {
   @Column(nullable = false)
   private String lastName;
 
+  @JsonBackReference
   @OneToOne(cascade = CascadeType.ALL, mappedBy = "coach")
   private Team team;
 
