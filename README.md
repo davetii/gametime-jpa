@@ -1,8 +1,9 @@
 # Gametime3 Learning app
 Hibernate JPA + Spring Boot REST Server
 
-
 ##Todo
+* Add Service test
+* Fix the Preloaded Data tests or push them to integration level
 * Implement PlayerSkill calc
 * Implement H2 Runtime profile
 * Implement Rest front ends
@@ -13,8 +14,9 @@ Hibernate JPA + Spring Boot REST Server
 ##Questions/Issues
 *  How to call a method in Player AFTER the DB load, this will run the calcs
 
-    
 ##Completed
+* Improvements = removed EAGER loading
+* Added rest end points
 * Implemented Status Enum
 * Implemented Position
 * Implement Player
@@ -30,9 +32,3 @@ Hibernate JPA + Spring Boot REST Server
 * Implement Coach/Team relationship
 * Load H2 tables example
 * Generate the project and configure for h2
-
-
-Examples
-https://mkyong.com/hibernate/hibernate-many-to-many-example-join-table-extra-column-annotation/
-https://www.codejava.net/frameworks/hibernate/hibernate-many-to-many-association-with-extra-columns-in-join-table-example
-

@@ -18,8 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENCE_ID;
 import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENCE_NAME;
 
-@SpringBootTest(classes = GametimeJpaApplication.class)
-@Transactional // needed to avoid dumbass LazyLoad JPA/Hibernate issue
+@SpringBootTest
 public class ConferenceRepoTest {
 
     @Autowired
@@ -58,6 +57,7 @@ public class ConferenceRepoTest {
     }
 
     @Test
+    @Transactional
     public void ensureConferenceIsAddedToTeam() {
         Assertions.assertNotNull(conferenceRepo.findById(TEST_CONFERENCE_ID));
 
@@ -77,6 +77,7 @@ public class ConferenceRepoTest {
     }
 
     @Test
+    @Transactional
     public void ensureConferenceWithTeamsReturnsAll() {
         team1 = helper.newTeam("MI", "Michigan","Panthers", newConference);
         team2 = helper.newTeam("CHI", "Chicago","Blackhawks", newConference);

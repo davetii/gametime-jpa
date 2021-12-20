@@ -1,6 +1,7 @@
 package software.daveturner.gametimejpa.repo;
 
 
+import org.assertj.core.internal.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,10 +42,6 @@ public class PreLoadedDataTest {
 
     @AfterEach
     public void cleanup() {
-        cleanDB();
-    }
-
-    private void cleanDB() {
         playerRepo.deleteAll();
         teamRepo.deleteAll();
         gmRepo.deleteAll();
@@ -52,17 +49,17 @@ public class PreLoadedDataTest {
         conferenceRepo.deleteAll();
     }
 
-
-    //@Test
+    @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedCoachDataExists() {
+
         Optional<Coach> frankValcone = coachRepo.findById(2l);
         assertTrue(frankValcone.isPresent());
         assertEquals("Fastbacks", frankValcone.get().getTeam().getName());
     }
 
-    //@Test
+    @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedGMDataExists() {
@@ -71,7 +68,7 @@ public class PreLoadedDataTest {
         assertEquals("Gators", donSchmidt.get().getTeam().getName());
     }
 
-    //@Test
+    @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedTeamDataExists() {
@@ -81,7 +78,7 @@ public class PreLoadedDataTest {
         assertEquals("Becken", panthers.get().getGm().getLastName());
     }
 
-    //@Test
+    @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensureALLEntitiesAreLoaded() {
@@ -92,16 +89,18 @@ public class PreLoadedDataTest {
         assertEquals(558, playerRepo.count());
     }
 
-    //@Test
+    /* not sure adding this tests breaks everything else
+    @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
-    @Transactional
     public void ensureTeamReturnsExpectedPlayers() {
         assertEquals(13, teamRepo.findById("MI").get().getPlayers().size());
         assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById(999l).get()));
     }
 
-    //@Test
+     */
+
+    @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePlayerReturnsExpected() {

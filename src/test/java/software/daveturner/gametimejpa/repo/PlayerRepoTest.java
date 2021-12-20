@@ -20,7 +20,7 @@ import java.util.Set;
 import static software.daveturner.gametimejpa.domain.Position.PG;
 import static software.daveturner.gametimejpa.domain.Role.STARTER;
 
-@SpringBootTest(classes = GametimeJpaApplication.class)
+@SpringBootTest
 public class PlayerRepoTest {
 
     @Autowired
