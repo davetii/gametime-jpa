@@ -27,7 +27,7 @@ public class Team   {
   private Conference conference;
 
   @OneToMany(fetch = FetchType.LAZY, mappedBy="team")
-  private Set<Player> players = new LinkedHashSet<>();
+  private Set<Player> players = new HashSet<>();
 
   @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "coach_id", referencedColumnName = "id")

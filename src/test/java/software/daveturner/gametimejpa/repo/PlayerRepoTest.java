@@ -12,6 +12,11 @@ import software.daveturner.gametimejpa.domain.Position;
 import software.daveturner.gametimejpa.domain.Role;
 import software.daveturner.gametimejpa.domain.Team;
 
+import javax.transaction.Transactional;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import static software.daveturner.gametimejpa.domain.Position.PG;
 import static software.daveturner.gametimejpa.domain.Role.STARTER;
 
@@ -24,16 +29,11 @@ public class PlayerRepoTest {
     @Autowired
     TeamRepo teamRepo;
 
-    Player player;
-
     RepoTestHelper helper = new RepoTestHelper();
 
     @BeforeEach
     public void setup() {
-        player = helper.newPlayer("Test", "Player1");
-        player.setPosition(PG);
-        player.setRole(STARTER);
-        player = playerRepo.save(player);
+
     }
 
     @AfterEach
@@ -45,18 +45,46 @@ public class PlayerRepoTest {
     @Test
     public void ensureAPIReturnsExpected() {
 
+        Player player = helper.newPlayer("Test", "Player1");
+        player.setPosition(PG);
+        player.setRole(STARTER);
+        player = playerRepo.save(player);
         Assertions.assertEquals(1, playerRepo.count());
         Assertions.assertEquals(PG, playerRepo.findById(player.getId()).get().getPosition());
 
     }
 
     @Test
+    @Transactional
     public void ensureAddingTeamReturnsExpected() {
-        Team panthers = helper.newTeam("MI", "Michigan", "Panthers");
-        panthers.getPlayers().add(player);
-        teamRepo.save(panthers);
-        player.setTeam(panthers);
+
+        Player player = helper.newPlayer("Test", "Player1");
+        player.setPosition(PG);
+        player.setRole(STARTER);
         playerRepo.save(player);
+
+        Team panthers = helper.newTeam("MI", "Michigan", "Panthers");
+        //teamRepo.save(panthers);
+
+        player.setTeam(panthers);
+        panthers.getPlayers().add(player);
+
+        playerRepo.save(player);
+        teamRepo.save(panthers);
+
+
+
+
+        //
+
+
+
+
+
+
+
+        //teamRepo.save(panthers);
+
         Assertions.assertEquals(1, teamRepo.findById(panthers.getId()).get().getPlayers().size());
         Assertions.assertEquals("MI", playerRepo.findById(player.getId()).get().getTeam().getId());
     }
