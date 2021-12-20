@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Player;
 import software.daveturner.gametimejpa.domain.Position;
@@ -39,9 +38,8 @@ public class PlayerRepoTest {
 
     @AfterEach
     public void cleanup() {
-        helper.cleanupAllRepos();
-        //playerRepo.deleteAll();
-        //teamRepo.deleteAll();
+        playerRepo.deleteAll();
+        teamRepo.deleteAll();
     }
 
     @Test
@@ -53,7 +51,6 @@ public class PlayerRepoTest {
     }
 
     @Test
-    @Transactional
     public void ensureAddingTeamReturnsExpected() {
         Team panthers = helper.newTeam("MI", "Michigan", "Panthers");
         panthers.getPlayers().add(player);

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.Conference;
 import software.daveturner.gametimejpa.domain.Team;
@@ -47,13 +46,11 @@ public class ConferenceRepoTest {
 
     @AfterEach
     public void cleanup() {
-        helper.cleanupAllRepos();
         teamRepo.deleteAll();
         conferenceRepo.deleteAll();
     }
 
     @Test
-    @Transactional
     public void ensureConferenceRepoInsertUpdateRead() {
         List<Conference> list = helper.findAll(conferenceRepo);
         assertEquals(list.get(0).getId(), TEST_CONFERENCE_ID);
@@ -61,7 +58,6 @@ public class ConferenceRepoTest {
     }
 
     @Test
-    @Transactional
     public void ensureConferenceIsAddedToTeam() {
         Assertions.assertNotNull(conferenceRepo.findById(TEST_CONFERENCE_ID));
 
@@ -81,7 +77,6 @@ public class ConferenceRepoTest {
     }
 
     @Test
-    @Transactional
     public void ensureConferenceWithTeamsReturnsAll() {
         team1 = helper.newTeam("MI", "Michigan","Panthers", newConference);
         team2 = helper.newTeam("CHI", "Chicago","Blackhawks", newConference);

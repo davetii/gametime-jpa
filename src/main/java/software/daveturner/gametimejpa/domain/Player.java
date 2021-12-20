@@ -1,6 +1,6 @@
 package software.daveturner.gametimejpa.domain;
 
-import org.hibernate.annotations.Fetch;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -46,8 +46,8 @@ public class Player {
     private Integer strength;
 
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    @ManyToOne
     @JoinColumn(name="team_id", nullable=true)
     private Team team;
 
@@ -299,7 +299,6 @@ public class Player {
                 ", size=" + size +
                 ", speed=" + speed +
                 ", strength=" + strength +
-                ", team=" + team +
                 '}';
     }
 }

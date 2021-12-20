@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 import software.daveturner.gametimejpa.GametimeJpaApplication;
 import software.daveturner.gametimejpa.domain.GM;
 import software.daveturner.gametimejpa.domain.Team;
@@ -36,11 +35,11 @@ public class GMRepoTest {
 
     @AfterEach
     public void cleanup() {
-        helper.cleanupAllRepos();
+        gmRepo.deleteAll();
+        teamRepo.deleteAll();
     }
 
     @Test
-    @Transactional
     public void ensureSuccessfulSaveReturnsExpected() {
         GM newGM = gmRepo.save(gmBob);
         List<GM> list = helper.findAll(gmRepo);
@@ -49,14 +48,11 @@ public class GMRepoTest {
     }
 
     @Test
-    @Transactional
     public void ensureAddingToTeamReturnsExpected() {
         gmRepo.save(gmBob);
-        teamRepo.save(panthers);
         panthers.setGm(gmBob);
-        gmBob.setTeam(panthers);
         teamRepo.save(panthers);
-        gmRepo.save(gmBob);
+
         List<GM> gmList = helper.findAll(gmRepo);
         assertEquals(gmList.get(0).getTeam(), panthers);
 

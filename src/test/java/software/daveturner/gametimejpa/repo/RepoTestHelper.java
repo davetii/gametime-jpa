@@ -14,20 +14,6 @@ public class RepoTestHelper {
     @Autowired
     ConferenceRepo conferenceRepo;
 
-    @Autowired
-    PlayerRepo playerRepo;
-
-    @Autowired
-    TeamRepo teamRepo;
-
-    @Autowired
-    private CoachRepo coachRepo;
-
-    @Autowired
-    private GMRepo gmRepo;
-
-
-
     public static final String TEST_CONFERENCE_ID = "bob";
     public static final String TEST_CONFERENCE_NAME = "bobby";
 
@@ -82,34 +68,5 @@ public class RepoTestHelper {
         gm.setFirstName(firstName);
         gm.setLastName(lastName);
         return gm;
-    }
-
-    public void cleanupAllRepos() {
-
-        if(playerRepo != null ) {
-           playerRepo.deleteAll();
-        }
-
-        if(teamRepo != null) {
-            teamRepo.deleteAll();
-        }
-
-        if(coachRepo != null) {
-            coachRepo.deleteAll();
-        }
-
-        if(gmRepo != null) {
-            gmRepo.deleteAll();
-        }
-
-        if(conferenceRepo != null) {
-            conferenceRepo.deleteAll();
-        }
-
-
-
-
-
-
     }
 }
