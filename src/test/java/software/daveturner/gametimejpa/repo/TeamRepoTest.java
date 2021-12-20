@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-@SpringBootTest(classes = GametimeJpaApplication.class)
+@SpringBootTest
 public class TeamRepoTest {
 
     @Autowired

@@ -13,7 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest(classes = GametimeJpaApplication.class)
+@SpringBootTest
 public class GMRepoTest {
 
     @Autowired
