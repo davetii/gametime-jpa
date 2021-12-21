@@ -9,6 +9,7 @@ Hibernate JPA + Spring Boot REST Server
 * Implement Rest front ends
 * being Historical data support
 * Implement MySQL Runtime profile
+* Dockerize the Project
 
 
 ##Questions/Issues

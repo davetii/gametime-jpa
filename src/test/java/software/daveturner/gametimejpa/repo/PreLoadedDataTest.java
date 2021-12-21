@@ -2,8 +2,6 @@ package software.daveturner.gametimejpa.repo;
 
 
 import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
 import software.daveturner.gametimejpa.domain.*;
@@ -15,36 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static software.daveturner.gametimejpa.domain.Position.PG;
 import static software.daveturner.gametimejpa.domain.Role.STARTER;
 
-@SpringBootTest
-public class PreLoadedDataTest {
 
-
-    @Autowired
-    CoachRepo coachRepo;
-
-    @Autowired
-    TeamRepo teamRepo;
-
-    @Autowired
-    GMRepo gmRepo;
-
-    @Autowired
-    PlayerRepo playerRepo;
-
-    @Autowired
-    ConferenceRepo conferenceRepo;
-
-    RepoTestHelper helper = new RepoTestHelper();
-
-    @AfterEach
-    public void cleanup() {
-        playerRepo.deleteAll();
-        teamRepo.deleteAll();
-        gmRepo.deleteAll();
-        coachRepo.deleteAll();
-        conferenceRepo.deleteAll();
-    }
-
+public class PreLoadedDataTest extends BaseJPATest{
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
@@ -85,7 +55,7 @@ public class PreLoadedDataTest {
         assertEquals(558, playerRepo.count());
     }
 
-    /* not sure adding this tests breaks everything else
+
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
@@ -94,8 +64,6 @@ public class PreLoadedDataTest {
         assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById(999l).get()));
     }
 
-     */
-
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
@@ -103,10 +71,5 @@ public class PreLoadedDataTest {
         Player tonyHawk = playerRepo.findById(999L).get();
         assertEquals(tonyHawk.getPosition(), PG);
         assertEquals(tonyHawk.getRole(), STARTER);
-
     }
-
-
-
-
 }

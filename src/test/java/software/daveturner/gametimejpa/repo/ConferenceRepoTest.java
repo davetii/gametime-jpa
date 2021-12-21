@@ -17,16 +17,7 @@ import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENC
 import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENCE_NAME;
 
 @SpringBootTest
-public class ConferenceRepoTest {
-
-    @Autowired
-    ConferenceRepo conferenceRepo;
-
-    @Autowired
-    TeamRepo teamRepo;
-
-    private final RepoTestHelper helper = new RepoTestHelper();
-
+public class ConferenceRepoTest extends BaseJPATest {
 
     private Conference newConference;
     Team team1;
@@ -41,16 +32,9 @@ public class ConferenceRepoTest {
         conferenceRepo.save(newConference);
     }
 
-    @AfterEach
-    public void cleanup() {
-        teamRepo.deleteAll();
-        conferenceRepo.deleteAll();
-    }
-
     @Test
     public void ensureConferenceRepoInsertUpdateRead() {
         List<Conference> list = helper.findAll(conferenceRepo);
-        assertEquals(list.get(0).getId(), TEST_CONFERENCE_ID);
         assertEquals(conferenceRepo.findById(TEST_CONFERENCE_ID).get().getName(), TEST_CONFERENCE_NAME);
     }
 
