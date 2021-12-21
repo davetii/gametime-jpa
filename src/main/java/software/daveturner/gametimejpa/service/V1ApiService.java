@@ -13,6 +13,4 @@ public interface V1ApiService {
     Optional<Conference> getConference(String conferenceId);
     Optional<Team> getTeam(String teamId);
     Optional<Player> getPlayer(String playerId);
-
-
 }
