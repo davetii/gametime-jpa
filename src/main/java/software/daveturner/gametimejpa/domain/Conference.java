@@ -6,6 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "conference")
+@Cacheable
 public class Conference {
 
     @Id

@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "team")
+@Cacheable
 public class Team   {
 
   @Column(nullable = false)

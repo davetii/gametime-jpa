@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
+@Cacheable
 public class Player {
 
     public Player() { }
