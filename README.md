@@ -2,19 +2,19 @@
 Hibernate JPA + Spring Boot REST Server
 
 ##Todo
-* Add Service test
-* Fix the Preloaded Data tests or push them to integration level
+* Controller tests
 * Implement PlayerSkill calc
-* Implement H2 Runtime profile
-* Implement Rest front ends
-* being Historical data support
-* Implement MySQL Runtime profile
+* Profiles for different DB's
+* Implement front ends
+* Dockerize the Project
+* Gametime JPA phase2
+  * Historical Data
 
-
-##Questions/Issues
-*  How to call a method in Player AFTER the DB load, this will run the calcs
 
 ##Completed
+* Added PLayers Skills
+* Push Entities out of Domain, mapped entities to domains
+* Add Service test
 * Improvements = removed EAGER loading
 * Added rest end points
 * Implemented Status Enum

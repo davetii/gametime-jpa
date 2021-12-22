@@ -1,12 +1,31 @@
-package software.daveturner.gametimejpa.domain;
+package software.daveturner.gametimejpa.entity;
 
-public class Player {
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import software.daveturner.gametimejpa.domain.Position;
+import software.daveturner.gametimejpa.domain.Role;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "player")
+@Cacheable
+public class PlayerEntity {
+
+    public PlayerEntity() { }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String firstName;
     private String lastName;
+
+    @Enumerated(EnumType.STRING)
     private Position position;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
+
     private String height;
     private Integer weight;
     private Integer yearsPro;
@@ -30,14 +49,26 @@ public class Player {
     private Integer speed;
     private Integer strength;
 
-    private PlayerSkills skills;
 
-    public Long getId() {
-        return id;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="team_id", nullable=true)
+    private TeamEntity team;
+
+    public TeamEntity getTeam() {
+        return team;
+    }
+
+    public void setTeam(TeamEntity team) {
+        this.team = team;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -62,14 +93,6 @@ public class Player {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public String getHeight() {
@@ -104,13 +127,8 @@ public class Player {
         this.origin = origin;
     }
 
-    public String getOriginDetails() {
-        return originDetails;
-    }
-
-    public void setOriginDetails(String originDetails) {
-        this.originDetails = originDetails;
-    }
+    public String getOriginDetails() { return originDetails; }
+    public void setOriginDetails(String originDetails) { this.originDetails = originDetails; }
 
     public Integer getAthleticism() {
         return athleticism;
@@ -227,7 +245,6 @@ public class Player {
     public Integer getSpeed() {
         return speed;
     }
-
     public void setSpeed(Integer speed) {
         this.speed = speed;
     }
@@ -235,16 +252,57 @@ public class Player {
     public Integer getStrength() {
         return strength;
     }
-
     public void setStrength(Integer strength) {
         this.strength = strength;
     }
 
-    public PlayerSkills getSkills() {
-        return skills;
+    public Role getRole() { return role; }
+    public void setRole(Role role) { this.role = role; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PlayerEntity player = (PlayerEntity) o;
+
+        return id != null ? id.equals(player.id) : player.id == null;
     }
 
-    public void setSkills(PlayerSkills skills) {
-        this.skills = skills;
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                ", role='" + role + '\'' +
+                ", height='" + height + '\'' +
+                ", weight=" + weight +
+                ", yearsPro=" + yearsPro +
+                ", origin='" + origin + '\'' +
+                ", originDetails='" + originDetails + '\'' +
+                ", athleticism=" + athleticism +
+                ", charisma=" + charisma +
+                ", cohesion=" + cohesion +
+                ", determination=" + determination +
+                ", ego=" + ego +
+                ", endurance=" + endurance +
+                ", energy=" + energy +
+                ", handle=" + handle +
+                ", health=" + health +
+                ", intelligence=" + intelligence +
+                ", luck=" + luck +
+                ", shotSelection=" + shotSelection +
+                ", shotSkill=" + shotSkill +
+                ", size=" + size +
+                ", speed=" + speed +
+                ", strength=" + strength +
+                '}';
     }
 }

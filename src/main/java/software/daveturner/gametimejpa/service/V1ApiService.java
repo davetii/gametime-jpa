@@ -1,18 +1,16 @@
 package software.daveturner.gametimejpa.service;
 
-import software.daveturner.gametimejpa.domain.Conference;
-import software.daveturner.gametimejpa.domain.Player;
-import software.daveturner.gametimejpa.domain.Team;
+import software.daveturner.gametimejpa.domain.ConferenceInfo;
+import software.daveturner.gametimejpa.domain.PlayerInfo;
+import software.daveturner.gametimejpa.domain.TeamInfo;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 public interface V1ApiService {
-    List<Conference> getLeague();
-    Optional<Conference> getConference(String conferenceId);
-    Optional<Team> getTeam(String teamId);
-    Optional<Player> getPlayer(String playerId);
-
-
+    Set<ConferenceInfo> getLeague();
+    Optional <ConferenceInfo> getConference(String conferenceId);
+    Optional<TeamInfo> getTeam(String teamId);
+    Optional<PlayerInfo> getPlayer(String playerId);
 }
