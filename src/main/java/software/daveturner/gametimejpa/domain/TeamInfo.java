@@ -1,14 +1,16 @@
 package software.daveturner.gametimejpa.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TeamInfo {
+public class TeamInfo implements Serializable {
 
     private Team team;
     private Conference conference;
     Set<Player> players = new HashSet<>();
 
+    public TeamInfo() { }
 
     public Team getTeam() {
         return team;

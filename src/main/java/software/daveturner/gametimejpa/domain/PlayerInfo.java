@@ -1,6 +1,8 @@
 package software.daveturner.gametimejpa.domain;
 
-public class PlayerInfo {
+import java.io.Serializable;
+
+public class PlayerInfo implements Serializable {
 
     Player player;
     Team team;

@@ -1,6 +1,8 @@
 package software.daveturner.gametimejpa.domain;
 
-public class Conference {
+import java.io.Serializable;
+
+public class Conference implements Serializable {
 
     private String id;
     private String name;

@@ -1,5 +1,7 @@
 package software.daveturner.gametimejpa.domain;
 
-public enum Role {
+import java.io.Serializable;
+
+public enum Role implements Serializable {
     STARTER, BENCH, ROTATION, MINORS
 }
