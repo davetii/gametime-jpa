@@ -64,7 +64,7 @@ public class PreLoadedDataTest extends BaseJPATest{
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensureTeamReturnsExpectedPlayers() {
         assertEquals(13, teamRepo.findById("MI").get().getPlayers().size());
-        assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById(999l).get()));
+        assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById(999L).get()));
     }
 
     @Test

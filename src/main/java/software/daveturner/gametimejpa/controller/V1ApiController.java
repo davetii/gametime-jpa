@@ -6,12 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import software.daveturner.gametimejpa.domain.Conference;
 import software.daveturner.gametimejpa.domain.ConferenceInfo;
 import software.daveturner.gametimejpa.domain.PlayerInfo;
 import software.daveturner.gametimejpa.domain.TeamInfo;
-import software.daveturner.gametimejpa.entity.PlayerEntity;
-import software.daveturner.gametimejpa.entity.TeamEntity;
 import software.daveturner.gametimejpa.service.V1ApiService;
 
 import java.util.Optional;

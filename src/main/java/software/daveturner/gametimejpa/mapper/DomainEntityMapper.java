@@ -38,8 +38,7 @@ public class DomainEntityMapper {
     }
 
     void mapEntityPlayerList(TeamInfo teamInfo, Set<PlayerEntity> entities) {
-
-        entities.stream().forEach( e -> {
+        entities.forEach(e -> {
             Player player =mapEntityToPlayer(e);
             teamInfo.getPlayers().add(player);
         });

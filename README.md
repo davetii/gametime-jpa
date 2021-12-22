@@ -2,12 +2,13 @@
 Hibernate JPA + Spring Boot REST Server
 
 ##Todo
+* Controller tests
 * Implement PlayerSkill calc
 * Profiles for different DB's
 * Implement front ends
 * Dockerize the Project
 * Gametime JPA phase2
-  * Historical Data  
+  * Historical Data
 
 
 ##Completed

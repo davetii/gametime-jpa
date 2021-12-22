@@ -5,15 +5,14 @@ import org.junit.jupiter.api.Test;
 import software.daveturner.gametimejpa.domain.*;
 import software.daveturner.gametimejpa.entity.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DomainEntityMapperTest {
 
     public static final String GMFIRSTNAME = "gmfirstname";
     private static final String PLAYERFIRSTNAME = "TEST_FIRST_NAME";
     private static final String PLAYERLASTNAME = "TEST_LAST_NAME";
-    private static final long TESTID = 999l;
+    private static final long TESTID = 999L;
     private static final String TEST_NAME = "TEST_NAME";
     private static final String TEST_ID_STRING = "TEST_ID_STRING";
     private static final String TEST_LOCALE = "TEST_LOCALE";
@@ -59,7 +58,7 @@ public class DomainEntityMapperTest {
         assertEquals(GMFIRSTNAME, teamInfo.getTeam().getGm().getFirstName());
         assertEquals(GMLASTNAME, teamInfo.getTeam().getGm().getLastName());
         assertEquals(1, teamInfo.getPlayers().size());
-        assertEquals(true, teamInfo.getPlayers().stream().findFirst().isPresent());
+        assertTrue(teamInfo.getPlayers().stream().findFirst().isPresent());
         assertEquals(PLAYERFIRSTNAME, teamInfo.getPlayers().stream().findFirst().get().getFirstName());
         assertEquals(PLAYERLASTNAME, teamInfo.getPlayers().stream().findFirst().get().getLastName());
 
@@ -212,10 +211,6 @@ public class DomainEntityMapperTest {
         playerEntity.setLastName(PLAYERLASTNAME);
         playerEntity.setFirstName(PLAYERFIRSTNAME);
         playerEntity.setId(TESTID);
-        //playerEntity.setHeight(e.getHeight());
-        //playerEntity.setWeight(e.getWeight());
-        //playerEntity.setOrigin(e.getOrigin());
-        //playerEntity.setOriginDetails(e.getOriginDetails());
         playerEntity.setAthleticism(TESTATTRIB);
         playerEntity.setCharisma(TESTATTRIB);
         playerEntity.setCohesion(TESTATTRIB);

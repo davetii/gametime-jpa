@@ -1,11 +1,5 @@
 package software.daveturner.gametimejpa.domain;
 
-
-import software.daveturner.gametimejpa.entity.TeamEntity;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class Team {
 
     private String locale;

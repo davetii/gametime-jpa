@@ -2,7 +2,6 @@ package software.daveturner.gametimejpa.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import software.daveturner.gametimejpa.domain.Conference;
 import software.daveturner.gametimejpa.domain.ConferenceInfo;
 import software.daveturner.gametimejpa.domain.PlayerInfo;
 import software.daveturner.gametimejpa.domain.TeamInfo;
@@ -28,14 +27,13 @@ public class V1ApiServiceImpl implements V1ApiService {
     private final ConferenceRepo conferenceRepo;
     private final TeamRepo teamRepo;
     private final PlayerRepo playerRepo;
+    private final DomainEntityMapper mapper;
 
-    @Autowired
-    private DomainEntityMapper mapper;
-
-    public V1ApiServiceImpl(ConferenceRepo conferenceRepo, TeamRepo teamRepo, PlayerRepo playerRepo) {
+    public V1ApiServiceImpl(ConferenceRepo conferenceRepo, TeamRepo teamRepo, PlayerRepo playerRepo, DomainEntityMapper mapper) {
         this.playerRepo = playerRepo;
         this.conferenceRepo = conferenceRepo;
         this.teamRepo = teamRepo;
+        this.mapper = mapper;
     }
 
     @Override
@@ -49,27 +47,18 @@ public class V1ApiServiceImpl implements V1ApiService {
     @Override
     public Optional<ConferenceInfo> getConference(String id) {
         Optional<ConferenceEntity> entity = conferenceRepo.findById(id);
-        if(entity.isPresent()) {
-             return Optional.of(mapper.entityToConferenceInfo(entity.get()));
-        }
-        return Optional.empty();
+        return entity.map(conferenceEntity -> mapper.entityToConferenceInfo(conferenceEntity));
     }
 
     @Override
     public Optional<TeamInfo> getTeam(String teamId) {
         Optional<TeamEntity> entity = teamRepo.findById(teamId);
-        if(entity.isPresent()) {
-            return Optional.of(mapper.entityToTeamInfo(entity.get()));
-        }
-        return Optional.empty();
+        return entity.map(teamEntity -> mapper.entityToTeamInfo(teamEntity));
     }
 
     @Override
     public Optional<PlayerInfo> getPlayer(String playerId) {
         Optional<PlayerEntity> entity = playerRepo.findById(valueOf(playerId));
-        if(entity.isPresent()) {
-            return Optional.of(mapper.entityToPlayerInfo(entity.get()));
-        }
-        return Optional.empty();
+        return entity.map(playerEntity -> mapper.entityToPlayerInfo(playerEntity));
     }
 }

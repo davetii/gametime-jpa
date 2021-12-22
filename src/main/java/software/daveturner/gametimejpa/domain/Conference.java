@@ -1,15 +1,9 @@
 package software.daveturner.gametimejpa.domain;
 
-import software.daveturner.gametimejpa.entity.ConferenceEntity;
-
-import java.util.HashSet;
-import java.util.Set;
-
 public class Conference {
 
     private String id;
     private String name;
-
 
     public String getId() {
         return id;
