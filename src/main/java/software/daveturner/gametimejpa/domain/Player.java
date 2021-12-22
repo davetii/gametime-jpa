@@ -1,6 +1,8 @@
 package software.daveturner.gametimejpa.domain;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
 
     private Long id;
     private String firstName;
@@ -29,6 +31,8 @@ public class Player {
     private Integer size;
     private Integer speed;
     private Integer strength;
+
+    public Player() { }
 
     private PlayerSkills skills;
 

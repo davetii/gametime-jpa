@@ -1,12 +1,16 @@
 package software.daveturner.gametimejpa.domain;
 
-public class Team {
+import java.io.Serializable;
+
+public class Team implements Serializable {
 
     private String locale;
     private String name;
     private String id;
     private Coach coach;
     private GM gm;
+
+
 
     public String getLocale() {
         return locale;

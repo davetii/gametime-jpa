@@ -1,8 +1,9 @@
 package software.daveturner.gametimejpa.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class PlayerSkills {
+public class PlayerSkills implements Serializable {
 
     private BigDecimal acumen;
     private BigDecimal ballSecurity;
@@ -17,6 +18,8 @@ public class PlayerSkills {
     private BigDecimal teamDefense;
     private BigDecimal offenseRebound;
     private BigDecimal defenseRebound;
+
+    public PlayerSkills() { }
 
     public PlayerSkills(Player player) {
     }

@@ -1,6 +1,8 @@
 package software.daveturner.gametimejpa.domain;
 
-public class Coach {
+import java.io.Serializable;
+
+public class Coach implements Serializable {
 
     private Long id;
     private String firstName;

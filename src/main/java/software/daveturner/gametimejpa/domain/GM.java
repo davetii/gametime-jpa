@@ -1,6 +1,8 @@
 package software.daveturner.gametimejpa.domain;
 
-public class GM {
+import java.io.Serializable;
+
+public class GM implements Serializable {
 
     private Long id;
     private String firstName;
