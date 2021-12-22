@@ -2,7 +2,6 @@
 Hibernate JPA + Spring Boot REST Server
 
 ##Todo
-* Controller tests
 * Implement PlayerSkill calc
 * Profiles for different DB's
 * Implement front ends
@@ -12,6 +11,7 @@ Hibernate JPA + Spring Boot REST Server
 
 
 ##Completed
+* Controller tests
 * Added PLayers Skills
 * Push Entities out of Domain, mapped entities to domains
 * Add Service test

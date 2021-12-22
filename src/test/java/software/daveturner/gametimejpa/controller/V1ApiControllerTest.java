@@ -10,8 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import software.daveturner.gametimejpa.domain.ConferenceInfo;
-import software.daveturner.gametimejpa.domain.TeamInfo;
+import software.daveturner.gametimejpa.domain.*;
 import software.daveturner.gametimejpa.repo.BaseJPATest;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -97,8 +96,58 @@ public class V1ApiControllerTest extends BaseJPATest {
         assertEquals(response.getTeam().getGm().getLastName(), "Davison");
         assertEquals(response.getConference().getId(), "EAST");
         assertEquals(response.getPlayers().size(), 12);
+    }
 
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensureNotFoundPlayerReturns404() {
+        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/api/v1/gametime/player/34322", String.class);
+        assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND, "NOT found player returns 404");
+    }
+
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensurebadInputPlayerReturns404() {
+        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/api/v1/gametime/player/bob", String.class);
+        assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND, "Bad input found player returns 404");
+    }
+
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensureEmptyPLayerIdPlayerReturns404() {
+        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/api/v1/gametime/player", String.class);
+        assertEquals(response.getStatusCode(), HttpStatus.NOT_FOUND, "No input found player returns 404");
+    }
+
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensureNotFoundPlayerReturns200() {
+        ResponseEntity<String> response = this.restTemplate.getForEntity("http://localhost:" + port + "/api/v1/gametime/player/999", String.class);
+        assertEquals(response.getStatusCode(), HttpStatus.OK, "found team returns 200");
+    }
+
+    @Test
+    @Sql(scripts = {"/preloaded-data-tests.sql"},
+            config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
+    public void ensurePlayerReturnsExpected() {
+        PlayerInfo playerInfo = this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/gametime/player/999", PlayerInfo.class);
+        assertEquals(999L, playerInfo.getPlayer().getId());
+        assertEquals("Tony", playerInfo.getPlayer().getFirstName());
+        assertEquals("Hawk", playerInfo.getPlayer().getLastName());
+        assertEquals(Position.PG, playerInfo.getPlayer().getPosition());
+        assertEquals(Role.STARTER, playerInfo.getPlayer().getRole());
+        assertEquals(2, playerInfo.getPlayer().getSize());
+        assertEquals("MI", playerInfo.getTeam().getId());
+        assertEquals("Michigan", playerInfo.getTeam().getLocale());
+        assertEquals("Panthers", playerInfo.getTeam().getName());
+        assertEquals("NORTH", playerInfo.getConference().getId());
+        assertEquals("Northern", playerInfo.getConference().getName());
     }
 
 }
+
 
