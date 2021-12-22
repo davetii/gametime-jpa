@@ -1,27 +1,29 @@
 package software.daveturner.gametimejpa.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ConferenceInfo implements Serializable {
 
     Conference conference;
-    Set<TeamInfo> teams = new HashSet<>();
+    List<TeamInfo> teams = new ArrayList<>();
+
+    public ConferenceInfo() { }
 
     public Conference getConference() {
         return conference;
     }
-
     public void setConference(Conference conference) {
         this.conference = conference;
     }
 
-    public Set<TeamInfo> getTeams() {
+    public List<TeamInfo> getTeams() {
         return teams;
     }
-
-    public void setTeams(Set<TeamInfo> teams) {
+    public void setTeams(List<TeamInfo> teams) {
         this.teams = teams;
     }
 }
