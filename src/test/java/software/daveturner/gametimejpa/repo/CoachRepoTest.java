@@ -1,19 +1,15 @@
 package software.daveturner.gametimejpa.repo;
 
 import org.junit.jupiter.api.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import software.daveturner.gametimejpa.domain.Coach;
-import software.daveturner.gametimejpa.domain.Team;
-
-import java.util.List;
+import software.daveturner.gametimejpa.entity.CoachEntity;
+import software.daveturner.gametimejpa.entity.TeamEntity;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CoachRepoTest extends BaseJPATest{
 
-    Team panthers;
-    Coach coachBob;
+    TeamEntity panthers;
+    CoachEntity coachBob;
 
     @BeforeEach
     public void setup() {
@@ -32,7 +28,7 @@ public class CoachRepoTest extends BaseJPATest{
 
     @Test
     public void ensureSaveReturnsExpected() {
-        Coach newCoach = coachRepo.save(helper.newCoach("Terry", "Stoudamire"));
+        CoachEntity newCoach = coachRepo.save(helper.newCoach("Terry", "Stoudamire"));
         assertEquals(coachRepo.findById(newCoach.getId()).get(), newCoach);
     }
 
@@ -64,7 +60,7 @@ public class CoachRepoTest extends BaseJPATest{
 
         assertNull(coachRepo.findById(coachBob.getId()).get().getTeam());
 
-        Coach alSmith = helper.newCoach("Al", "Smith");
+        CoachEntity alSmith = helper.newCoach("Al", "Smith");
         coachRepo.save(alSmith);
 
         panthers.setCoach(alSmith);

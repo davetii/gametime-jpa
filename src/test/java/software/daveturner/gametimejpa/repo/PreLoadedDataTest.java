@@ -4,7 +4,10 @@ package software.daveturner.gametimejpa.repo;
 import org.junit.jupiter.api.*;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
-import software.daveturner.gametimejpa.domain.*;
+import software.daveturner.gametimejpa.entity.CoachEntity;
+import software.daveturner.gametimejpa.entity.GMEntity;
+import software.daveturner.gametimejpa.entity.PlayerEntity;
+import software.daveturner.gametimejpa.entity.TeamEntity;
 
 import java.util.Optional;
 
@@ -20,7 +23,7 @@ public class PreLoadedDataTest extends BaseJPATest{
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedCoachDataExists() {
 
-        Optional<Coach> frankValcone = coachRepo.findById(2L);
+        Optional<CoachEntity> frankValcone = coachRepo.findById(2L);
         assertTrue(frankValcone.isPresent());
         assertEquals("Fastbacks", frankValcone.get().getTeam().getName());
     }
@@ -29,7 +32,7 @@ public class PreLoadedDataTest extends BaseJPATest{
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedGMDataExists() {
-        Optional<GM> donSchmidt = gmRepo.findById(10L);
+        Optional<GMEntity> donSchmidt = gmRepo.findById(10L);
         assertTrue(donSchmidt.isPresent());
         assertEquals("Gators", donSchmidt.get().getTeam().getName());
     }
@@ -38,7 +41,7 @@ public class PreLoadedDataTest extends BaseJPATest{
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePreLoadedTeamDataExists() {
-        Optional<Team> panthers = teamRepo.findById("MI");
+        Optional<TeamEntity> panthers = teamRepo.findById("MI");
         assertTrue(panthers.isPresent());
         assertEquals("Jones", panthers.get().getCoach().getLastName());
         assertEquals("Becken", panthers.get().getGm().getLastName());
@@ -68,7 +71,7 @@ public class PreLoadedDataTest extends BaseJPATest{
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePlayerReturnsExpected() {
-        Player tonyHawk = playerRepo.findById(999L).get();
+        PlayerEntity tonyHawk = playerRepo.findById(999L).get();
         assertEquals(tonyHawk.getPosition(), PG);
         assertEquals(tonyHawk.getRole(), STARTER);
     }

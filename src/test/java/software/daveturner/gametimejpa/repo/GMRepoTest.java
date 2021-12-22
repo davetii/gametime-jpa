@@ -3,14 +3,14 @@ package software.daveturner.gametimejpa.repo;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import software.daveturner.gametimejpa.domain.GM;
-import software.daveturner.gametimejpa.domain.Team;
+import software.daveturner.gametimejpa.entity.GMEntity;
+import software.daveturner.gametimejpa.entity.TeamEntity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GMRepoTest extends BaseJPATest{
 
-    Team panthers;
-    GM gmBob;
+    TeamEntity panthers;
+    GMEntity gmBob;
 
     @BeforeEach
     public void setup() {
@@ -20,7 +20,7 @@ public class GMRepoTest extends BaseJPATest{
 
     @Test
     public void ensureSuccessfulSaveReturnsExpected() {
-        GM newGM = gmRepo.save(gmBob);
+        GMEntity newGM = gmRepo.save(gmBob);
         assertEquals(gmRepo.findById(newGM.getId()).get(), newGM);
     }
 

@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import software.daveturner.gametimejpa.domain.Conference;
-import software.daveturner.gametimejpa.domain.Player;
-import software.daveturner.gametimejpa.domain.Team;
+import software.daveturner.gametimejpa.domain.ConferenceInfo;
+import software.daveturner.gametimejpa.domain.PlayerInfo;
+import software.daveturner.gametimejpa.domain.TeamInfo;
+import software.daveturner.gametimejpa.entity.PlayerEntity;
+import software.daveturner.gametimejpa.entity.TeamEntity;
 import software.daveturner.gametimejpa.service.V1ApiService;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RequestMapping("api/v1/gametime")
 @RestController
@@ -25,28 +28,28 @@ public class V1ApiController {
     }
 
     @GetMapping("/league")
-    public ResponseEntity<List<Conference>> getLeague() {
-        return new ResponseEntity<>(apiService.getLeague(), HttpStatus.OK);
+    public ResponseEntity<Set<ConferenceInfo>> getLeague() {
+        return new ResponseEntity<Set<ConferenceInfo>>(apiService.getLeague(), HttpStatus.OK);
     }
 
     @GetMapping("/conference/{id}")
-    public ResponseEntity<Conference> getConference(@PathVariable String id) {
-        return (ResponseEntity<Conference>) handleOptionalResponse(apiService.getConference(id));
+    public ResponseEntity<ConferenceInfo> getConference(@PathVariable String id) {
+        return (ResponseEntity<ConferenceInfo>) handleOptionalResponse(apiService.getConference(id));
     }
 
     @GetMapping("/team/{id}")
-    public ResponseEntity<Team> getTeam(@PathVariable String id) {
-        return (ResponseEntity<Team>) handleOptionalResponse(apiService.getTeam(id));
+    public ResponseEntity<TeamInfo> getTeam(@PathVariable String id) {
+        return (ResponseEntity<TeamInfo>) handleOptionalResponse(apiService.getTeam(id));
     }
 
     @GetMapping("/player/{id}")
-    public ResponseEntity<Player> getPlayer(@PathVariable String id) {
+    public ResponseEntity<PlayerInfo> getPlayer(@PathVariable String id) {
         try {
             Long.valueOf(id);
         }catch(Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        return (ResponseEntity<Player>) handleOptionalResponse(apiService.getPlayer(id));
+        return (ResponseEntity<PlayerInfo>) handleOptionalResponse(apiService.getPlayer(id));
     }
 
     private ResponseEntity<?> handleOptionalResponse(Optional<?> optional) {

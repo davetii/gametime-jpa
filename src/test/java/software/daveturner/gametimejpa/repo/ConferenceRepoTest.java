@@ -1,13 +1,11 @@
 package software.daveturner.gametimejpa.repo;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import software.daveturner.gametimejpa.domain.Conference;
-import software.daveturner.gametimejpa.domain.Team;
+import software.daveturner.gametimejpa.entity.ConferenceEntity;
+import software.daveturner.gametimejpa.entity.TeamEntity;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -19,14 +17,14 @@ import static software.daveturner.gametimejpa.repo.RepoTestHelper.TEST_CONFERENC
 @SpringBootTest
 public class ConferenceRepoTest extends BaseJPATest {
 
-    private Conference newConference;
-    Team team1;
-    Team team2;
+    private ConferenceEntity newConference;
+    TeamEntity team1;
+    TeamEntity team2;
 
 
     @BeforeEach
     public void setup() {
-        newConference = new Conference();
+        newConference = new ConferenceEntity();
         newConference.setId(TEST_CONFERENCE_ID);
         newConference.setName(TEST_CONFERENCE_NAME);
         conferenceRepo.save(newConference);
@@ -34,7 +32,7 @@ public class ConferenceRepoTest extends BaseJPATest {
 
     @Test
     public void ensureConferenceRepoInsertUpdateRead() {
-        List<Conference> list = helper.findAll(conferenceRepo);
+        List<ConferenceEntity> list = helper.findAll(conferenceRepo);
         assertEquals(conferenceRepo.findById(TEST_CONFERENCE_ID).get().getName(), TEST_CONFERENCE_NAME);
     }
 
@@ -52,7 +50,7 @@ public class ConferenceRepoTest extends BaseJPATest {
         assertConferenceTeams(1, team1);
     }
 
-    private void assertConferenceTeams(int conferenceSize, Team teamToFind) {
+    private void assertConferenceTeams(int conferenceSize, TeamEntity teamToFind) {
         assertNotNull(conferenceRepo.findById(TEST_CONFERENCE_ID));
         assertEquals(conferenceSize, conferenceRepo.findById(TEST_CONFERENCE_ID).get().getTeams().size());
         assertTrue(conferenceRepo.findById(TEST_CONFERENCE_ID).get().getTeams().contains(teamToFind));

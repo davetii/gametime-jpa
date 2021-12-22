@@ -3,10 +3,8 @@ package software.daveturner.gametimejpa.repo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import software.daveturner.gametimejpa.domain.Player;
-import software.daveturner.gametimejpa.domain.Team;
+import software.daveturner.gametimejpa.entity.PlayerEntity;
+import software.daveturner.gametimejpa.entity.TeamEntity;
 
 import javax.transaction.Transactional;
 
@@ -19,7 +17,7 @@ public class PlayerRepoTest extends BaseJPATest{
     public void ensureAPIReturnsExpected() {
         long currentCount = (int) playerRepo.count();
 
-        Player player = helper.newPlayer("Test", "Player1");
+        PlayerEntity player = helper.newPlayer("Test", "Player1");
         player.setPosition(PG);
         player.setRole(STARTER);
         player = playerRepo.save(player);
@@ -33,12 +31,12 @@ public class PlayerRepoTest extends BaseJPATest{
     @Transactional
     public void ensureAddingTeamReturnsExpected() {
 
-        Player player = helper.newPlayer("Test", "Player1");
+        PlayerEntity player = helper.newPlayer("Test", "Player1");
         player.setPosition(PG);
         player.setRole(STARTER);
         playerRepo.save(player);
 
-        Team panthers = helper.newTeam("MI", "Michigan", "Panthers");
+        TeamEntity panthers = helper.newTeam("MI", "Michigan", "Panthers");
 
         player.setTeam(panthers);
         panthers.getPlayers().add(player);

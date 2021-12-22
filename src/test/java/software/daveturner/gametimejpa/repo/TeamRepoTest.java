@@ -3,9 +3,9 @@ package software.daveturner.gametimejpa.repo;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import software.daveturner.gametimejpa.domain.Coach;
-import software.daveturner.gametimejpa.domain.Player;
-import software.daveturner.gametimejpa.domain.Team;
+import software.daveturner.gametimejpa.entity.CoachEntity;
+import software.daveturner.gametimejpa.entity.PlayerEntity;
+import software.daveturner.gametimejpa.entity.TeamEntity;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,8 +21,8 @@ public class TeamRepoTest extends BaseJPATest {
 
     @Test
     public void ensureAddCoachReturnsExpected() {
-        Coach coachBob = coachRepo.save(helper.newCoach("Dirk", "Diggler"));
-        Team newTeam = teamRepo.save( helper.newTeam("TEST2", "Nowhere", "Testteam2"));
+        CoachEntity coachBob = coachRepo.save(helper.newCoach("Dirk", "Diggler"));
+        TeamEntity newTeam = teamRepo.save( helper.newTeam("TEST2", "Nowhere", "Testteam2"));
         Assertions.assertNull(newTeam.getCoach());
 
         newTeam.setCoach(coachBob);
@@ -31,7 +31,7 @@ public class TeamRepoTest extends BaseJPATest {
         teamRepo.save(newTeam);
         coachRepo.save(coachBob);
         Assertions.assertNotNull(newTeam.getCoach());
-        Optional<Team> sameTeam = teamRepo.findById("TEST2");
+        Optional<TeamEntity> sameTeam = teamRepo.findById("TEST2");
         assertTrue(sameTeam.isPresent());
         assertEquals(sameTeam.get(), newTeam);
         assertEquals(sameTeam.get().getCoach(), coachBob);
@@ -39,13 +39,13 @@ public class TeamRepoTest extends BaseJPATest {
 
     @Test
     public void ensurePlayersAreAddedToTeam() {
-        Team newTeam = teamRepo.save( helper.newTeam("TEST", "Nowhere", "testeteam"));
+        TeamEntity newTeam = teamRepo.save( helper.newTeam("TEST", "Nowhere", "testeteam"));
         teamRepo.save(newTeam);
 
-        Player player1 = helper.newPlayer("Test", "Player1");
+        PlayerEntity player1 = helper.newPlayer("Test", "Player1");
         playerRepo.save(player1);
 
-        Player player2 = helper.newPlayer("Test", "Player2");
+        PlayerEntity player2 = helper.newPlayer("Test", "Player2");
         playerRepo.save(player2);
 
         player1.setTeam(newTeam);
