@@ -19,19 +19,19 @@ public class OffenseReboundSkillCalculatorTest extends SkillSetCalculatorUnitTes
     @Test
     public void ensureLowSizeReturnsExpected() {
         player.setSize(2);
-        assertPlayer(5.7d, calc);
+        assertPlayer(2.5, calc);
     }
 
     @Test
     public void ensureHighDeterminationReturnsExpected() {
-        player.setDetermination(19);
-        assertPlayer(15.8d, calc);
+        player.setDetermination(9);
+        assertPlayer(8.5, calc);
     }
 
     @Test
     public void ensureBigSizeAndSpeedReturnsExepected() {
-        player.setSize(17);
-        player.setSpeed(14);
-        assertPlayer(14.2d, calc);
+        player.setSize(8);
+        player.setSpeed(8);
+        assertPlayer(8, calc);
     }
 }

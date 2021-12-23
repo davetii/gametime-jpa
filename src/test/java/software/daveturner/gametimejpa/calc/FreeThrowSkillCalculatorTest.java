@@ -19,12 +19,12 @@ public class FreeThrowSkillCalculatorTest extends SkillSetCalculatorUnitTest{
     @Test
     public void ensureAverage6YearPlayerReturnsExpected() {
         player.setYearsPro(6);
-        assertPlayer(11.0, calc);
+        assertPlayer(6.0, calc);
     }
 
     @Test
     public void ensureAverage12YearPlayerReturnsExpected() {
         player.setYearsPro(12);
-        assertPlayer(13.5, calc);
+        assertPlayer(8, calc);
     }
 }

@@ -26,31 +26,31 @@ public class IndividualDefenseSkillCalculator implements SkillCalculator {
         int speedStrength = a.getStrength() + a.getSpeed();
         int strengthSize = a.getStrength() + a.getSize();
 
-        if (speedStrength > 35) {
+        if (speedStrength > 18) {
             result += 6;
-        } else if (speedStrength > 32) {
+        } else if (speedStrength > 17) {
             result += 4.5;
-        } else if (speedStrength > 30) {
+        } else if (speedStrength > 16) {
             result += 3.5;
-        } else if (speedStrength > 28) {
+        } else if (speedStrength > 15) {
             result += 2;
-        } else if (speedStrength > 25) {
+        } else if (speedStrength > 14) {
             result += 1;
-        } else if (strengthSize > 35) {
+        } else if (strengthSize > 18) {
             result += 3.5;
-        } else if (strengthSize > 32) {
+        } else if (strengthSize > 17) {
             result += 2.5;
-        } else if (strengthSize > 30) {
+        } else if (strengthSize > 16) {
             result += 1.5;
-        } else if (strengthSize > 28) {
+        } else if (strengthSize > 15) {
             result += 1;
-        } else if (strengthSize > 26) {
+        } else if (strengthSize > 14) {
             result += .5;
-        } else if (a.getSpeed() > 18) {
+        } else if (a.getSpeed() > 9) {
             result += 3;
-        } else if (a.getSpeed() > 16) {
+        } else if (a.getSpeed() > 8) {
             result += 2;
-        } else if (a.getSpeed() > 14) {
+        } else if (a.getSpeed() > 7) {
             result += 2;
         }
         return result;
@@ -60,30 +60,30 @@ public class IndividualDefenseSkillCalculator implements SkillCalculator {
         double result = 0d;
         int speedStrength = a.getStrength() + a.getSpeed();
 
-        if (speedStrength < 4) {
+        if (speedStrength < 2) {
             result += 5;
-        } else if (speedStrength < 7) {
+        } else if (speedStrength < 3) {
             result += 4;
-        } else if (speedStrength < 10) {
+        } else if (speedStrength < 4) {
             result += 3;
-        } else if (speedStrength < 14) {
+        } else if (speedStrength < 5) {
             result += 2;
-        } else if (speedStrength < 18) {
+        } else if (speedStrength < 6) {
             result += 1;
         }
 
-        if (a.getSize() > 13) {
+        if (a.getSize() > 7) {
             if(a.getStrength() < 4) { result += 5; }
-            else if(a.getStrength() < 6) { result += 4; }
-            else if(a.getStrength() < 8) { result += 3; }
-            else if(a.getStrength() < 10) { result += 2; }
+            else if(a.getStrength() < 5) { result += 4; }
+            else if(a.getStrength() < 6) { result += 3; }
+            else if(a.getStrength() < 7) { result += 2; }
         }
 
-        if (a.getSize() < 8) {
-            if(a.getSpeed() < 4) { result += 5; }
-            else if(a.getSpeed() < 6) { result += 4; }
-            else if(a.getSpeed() < 8) { result += 3; }
-            else if(a.getSpeed() < 10) { result += 2; }
+        if (a.getSize() < 4) {
+            if(a.getSpeed() < 2) { result += 5; }
+            else if(a.getSpeed() < 3) { result += 4; }
+            else if(a.getSpeed() < 4) { result += 3; }
+            else if(a.getSpeed() < 5) { result += 2; }
         }
         return result;
     }

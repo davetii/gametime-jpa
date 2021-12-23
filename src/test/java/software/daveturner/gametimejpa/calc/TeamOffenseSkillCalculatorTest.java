@@ -18,13 +18,13 @@ public class TeamOffenseSkillCalculatorTest extends SkillSetCalculatorUnitTest {
 
     @Test
     public void ensureHighIntelReturnsExpected() {
-        player.setIntelligence(16);
-        assertPlayer(11.3d, calc);
+        player.setIntelligence(8);
+        assertPlayer(6.7d, calc);
     }
 
     @Test
-    public void ensureHighEgoReturnsExpected() {
-        player.setEgo(18);
-        assertPlayer(8d, calc);
+    public void ensureHighEgoLowersTeamOffenseiveSkill() {
+        player.setEgo(9);
+        assertPlayer(3d, calc);
     }
 }

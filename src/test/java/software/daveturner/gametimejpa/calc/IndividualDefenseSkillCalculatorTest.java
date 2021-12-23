@@ -18,15 +18,15 @@ public class IndividualDefenseSkillCalculatorTest extends SkillSetCalculatorUnit
 
     @Test
     public void ensureStrongAndFastHasHighIndividualDefense() {
-        player.setStrength(18);
-        player.setSpeed(18);
-        assertPlayer(16d, calc);
+        player.setStrength(9);
+        player.setSpeed(9);
+        assertPlayer(9.5d, calc);
     }
 
     @Test
     public void ensureWeakBigGuysLowIndividualDefense() {
         player.setStrength(5);
-        player.setSize(18);
-        assertPlayer(5.0d, calc);
+        player.setSize(9);
+        assertPlayer(2.0d, calc);
     }
 }
