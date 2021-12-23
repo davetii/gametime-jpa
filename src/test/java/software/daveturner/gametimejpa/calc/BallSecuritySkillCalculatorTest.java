@@ -19,18 +19,18 @@ public class BallSecuritySkillCalculatorTest extends SkillSetCalculatorUnitTest{
     @Test
     public void ensureHighEnergyAffectsBallSecurity() {
         player.setEnergy(19);
-        assertPlayer(8d, calc);
+        assertPlayer(3d, calc);
     }
 
     @Test
     public void ensureHighEgoAffectsBallSecurity() {
         player.setEgo(19);
-        assertPlayer(8d, calc);
+        assertPlayer(3d, calc);
     }
 
     @Test
     public void ensureHighEnduranceAffectsBallSecurity() {
         player.setEndurance(18);
-        assertPlayer(13d, calc);
+        assertPlayer(8d, calc);
     }
 }

@@ -17,29 +17,29 @@ public class DriveSkillCalculator implements SkillCalculator {
         value = calc(player.getSpeed(), value);
         value = calc(player.getStrength(), value);
 
-        if(player.getSize() > 18) { value -= 3;}
-        else if(player.getSize()  > 15) { value -= 2;}
-        else if(player.getSize()  > 12) { value -= 1;}
+        if(player.getSize() > 9) { value -= 3;}
+        else if(player.getSize()  > 7) { value -= 2;}
+        else if(player.getSize()  > 6) { value -= 1;}
 
-        if(player.getEnergy() < 3) { value -= 4;}
-        else if(player.getEnergy()  < 6) { value -= 3;}
-        else if(player.getEnergy()  < 9) { value -= 1;}
+        if(player.getEnergy() < 1) { value -= 4;}
+        else if(player.getEnergy()  < 3) { value -= 3;}
+        else if(player.getEnergy()  < 4) { value -= 1;}
 
-        if(player.getYearsPro() > 10) { value -= 4; }
-        else if(player.getYearsPro() > 8) { value -= 3; }
-        else if(player.getYearsPro() > 7) { value -= 2; }
-        else if(player.getYearsPro() > 6) { value -= 1; }
+        if(player.getYearsPro() > 14) { value -= 4; }
+        else if(player.getYearsPro() > 12) { value -= 3; }
+        else if(player.getYearsPro() > 10) { value -= 2; }
+        else if(player.getYearsPro() > 8) { value -= 1; }
 
         return round(value);
     }
 
     private double calc(int a, double currentVal) {
-        if(a > 18) { currentVal += 3;}
-        else if(a > 15) { currentVal += 2;}
-        else if(a > 12) { currentVal += 1;}
-        else if(a < 3) { currentVal -= 3;}
-        else if(a < 6) { currentVal -= 2;}
-        else if(a < 9) { currentVal -= 1;}
+        if(a > 9) { currentVal += 3;}
+        else if(a > 7) { currentVal += 2;}
+        else if(a > 6) { currentVal += 1;}
+        else if(a < 2) { currentVal -= 3;}
+        else if(a < 3) { currentVal -= 2;}
+        else if(a < 4) { currentVal -= 1;}
         return currentVal;
     }
 }

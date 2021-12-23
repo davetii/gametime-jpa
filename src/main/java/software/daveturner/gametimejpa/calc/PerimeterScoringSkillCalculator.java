@@ -15,30 +15,29 @@ public class PerimeterScoringSkillCalculator implements SkillCalculator {
                 player.getIntelligence() +
                 player.getAthleticism() +
                 player.getSpeed()) / 10d;
+        value= adjust(player.getShotSkill(), value);
 
-        if(player.getShotSkill() > 19) { value += 7; }
-        else if(player.getShotSkill() > 18) { value += 5; }
-        else if(player.getShotSkill() > 17) { value += 3.5; }
-        else if(player.getShotSkill() > 16) { value += 2.5; }
-        else if(player.getShotSkill() > 15) { value += 2; }
-        else if(player.getShotSkill() > 12) { value += 1; }
+        if(player.getShotSelection() > 9) { value += 4; }
+        else if(player.getShotSelection() > 8) { value += 3; }
+        else if(player.getShotSelection() > 7) { value += 2; }
 
-        if(player.getShotSkill() < 2) { value -= 8; }
-        else if(player.getShotSkill() < 3) { value -= 6; }
-        else if(player.getShotSkill() < 4) { value -= 5; }
-        else if(player.getShotSkill() < 5) { value -= 4; }
-        else if(player.getShotSkill() < 6) { value -= 3; }
-        else if(player.getShotSkill() < 8) { value -= 2; }
-        else if(player.getShotSkill() < 10) { value -= 1; }
-
-        if(player.getShotSelection() > 18) { value += 4; }
-        else if(player.getShotSelection() > 16) { value += 3; }
-        else if(player.getShotSelection() > 14) { value += 2; }
-
-        if(player.getSize() > 18) { value -= 2; }
-        else if(player.getSize() > 16) { value -= 1.5; }
-        else if(player.getSize() > 14) { value -= 1; }
+        if(player.getSize() > 9) { value -= 2; }
+        else if(player.getSize() > 8) { value -= 1.5; }
+        else if(player.getSize() > 7) { value -= 1; }
 
         return round(value);
+    }
+
+    private double adjust(int attrib,  double value) {
+        if(attrib > 9) { return value += 5;}
+        else if(attrib > 8) { return value += 4;}
+        else if(attrib > 7) { return value += 3;}
+        else if(attrib > 6) { return value += 2;}
+        else if(attrib > 5) { return value += 1.5;}
+        else if(attrib < 1) { return value -= 4;}
+        else if(attrib < 2) { return value -= 3;}
+        else if(attrib < 3) { return value -= 2.5;}
+        else if(attrib < 4) { return value -= 1.5;}
+        return value;
     }
 }

@@ -18,13 +18,13 @@ public class PerimeterScoringSkillCalculatorTest extends SkillSetCalculatorUnitT
 
     @Test
     public void ensureHighShotSkillReturnsExpected() {
-        player.setShotSkill(20);
-        assertPlayer(21d, calc);
+        player.setShotSkill(10);
+        assertPlayer(12d, calc);
     }
 
     @Test
     public void ensureLowShotSkillReturnsExpected() {
         player.setShotSkill(1);
-        assertPlayer(-1.6d, calc);
+        assertPlayer(0.4d, calc);
     }
 }

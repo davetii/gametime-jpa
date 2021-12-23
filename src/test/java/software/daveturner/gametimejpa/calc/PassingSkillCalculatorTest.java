@@ -18,25 +18,25 @@ public class PassingSkillCalculatorTest extends SkillSetCalculatorUnitTest {
 
     @Test
     public void assertGoodHandle() {
-        player.setHandle(18);
-        assertPlayer(17d, calc);
+        player.setHandle(9);
+        assertPlayer(11, calc);
     }
 
     @Test
     public void assertGoodIntel() {
-        player.setIntelligence(18);
-        assertPlayer(16.7d, calc);
+        player.setIntelligence(9);
+        assertPlayer(10.3, calc);
     }
 
     @Test
     public void assertBadHandle() {
         player.setHandle(4);
-        assertPlayer(4d, calc);
+        assertPlayer(4.5, calc);
     }
 
     @Test
     public void assertBadIntel() {
         player.setIntelligence(4);
-        assertPlayer(5d, calc);
+        assertPlayer(4.7, calc);
     }
 }

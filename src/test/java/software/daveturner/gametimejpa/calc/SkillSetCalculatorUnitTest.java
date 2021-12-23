@@ -6,9 +6,9 @@ import software.daveturner.gametimejpa.domain.Player;
 
 public class SkillSetCalculatorUnitTest {
 
-    protected static final int AVERAGE_ATTRIBUTE = 10;
+    protected static final int AVERAGE_ATTRIBUTE = 5;
     protected static final int DEFAULT_YEARS_PRO = 5;
-    protected static final double AVERAGE_SKILLSET = 10d;
+    protected static final double AVERAGE_SKILLSET = 5D;
 
     public Player player;
 
@@ -46,6 +46,6 @@ public class SkillSetCalculatorUnitTest {
     }
 
     public void assertPlayer(double d, SkillCalculator calc) {
-        Assertions.assertEquals(calc.calc(player), calc.round(d));
+        Assertions.assertEquals(calc.round(d), calc.calc(player));
     }
 }

@@ -29,9 +29,13 @@ public class TeamOffenseSkillCalculator implements SkillCalculator {
                         player.getDetermination() +
                         (player.getCohesion()*2)) / 9d;
 
-        if(player.getEgo() > 18) { value -= 3;}
-        else if(player.getEgo() > 17) { value -= 2;}
-        else if(player.getEgo() > 15) { value -= 1;}
+        if(player.getEgo() > 9) { value -= 3;}
+        else if(player.getEgo() > 8) { value -= 2;}
+        else if(player.getEgo() > 7) { value -= 1;}
+
+        if(player.getIntelligence() > 9) { value += 2; }
+        else if(player.getIntelligence() > 8) { value += 1.5; }
+        else if(player.getIntelligence() > 7) { value += 1; }
 
         return round(value);
     }

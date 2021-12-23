@@ -19,42 +19,45 @@ public class DefenseReboundSkillCalculatorTest extends SkillSetCalculatorUnitTes
     @Test
     public void ensureLowEgoReturnsExpected() {
         player.setEgo(1);
-        assertPlayer(5.2d, calc);
+        assertPlayer(2, calc);
     }
 
     @Test
     public void ensureLowEnduranceReturnsExpected() {
-        player.setEndurance(4);
-        assertPlayer(9.0d, calc);
+        player.setEndurance(5);
+        assertPlayer(5, calc);
+        player.setEndurance(3);
+        assertPlayer(4, calc);
     }
 
     @Test
     public void ensureLowSizeReturnsExpected() {
         player.setSize(2);
-        assertPlayer(5.5d, calc);
+        assertPlayer(2.3, calc);
     }
 
     @Test
     public void ensureBigAndStrongReturnsExpected() {
-        player.setStrength(18); player.setSize(18);
-        assertPlayer(16.4d, calc);
+        player.setStrength(8);
+        player.setSize(8);
+        assertPlayer(8.3d, calc);
     }
 
     @Test
-    public void ensureBigEgoReturnsExpected() {
-        player.setEgo(18);
-        assertPlayer(11.7d, calc);
+    public void ensureBigEgoHelpsDefensiveRebounding() {
+        player.setEgo(8);
+        assertPlayer(6, calc);
     }
 
     @Test
     public void ensureSuperAgileReturnsExpected() {
-        player.setAthleticism(19);
-        assertPlayer(13.5d, calc);
+        player.setAthleticism(9);
+        assertPlayer(7.5d, calc);
     }
 
     @Test
     public void ensureBigPlayerReturnsExpected() {
-        player.setSize(19);
-        assertPlayer(14.6d, calc);
+        player.setSize(9);
+        assertPlayer(8.9d, calc);
     }
 }

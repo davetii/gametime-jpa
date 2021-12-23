@@ -15,43 +15,37 @@ public class OffenseReboundSkillCalculator implements SkillCalculator{
                         (player.getEnergy() * 2) + (player.getIntelligence() * 2) +
                         (player.getSize() * 2) + (player.getStrength() * 2)) / 12d;
 
-        if(player.getDetermination() > 18) { value += 3.5;}
-        else if(player.getDetermination() > 16) { value += 2.5;}
-        else if(player.getDetermination() > 14) { value +=1.5; }
-        else if(player.getDetermination() > 12) { value +=1; }
+        value = adjustValueUp(player.getDetermination(), value);
+        value = adjustValueUp(player.getAthleticism(), value);
+        value = adjustValueUp(player.getSize(), value);
 
-        if(player.getAthleticism() > 18) { value += 3.5;}
-        else if(player.getAthleticism() > 16) { value += 2.5;}
-        else if(player.getAthleticism() > 14) { value +=1.5; }
-        else if(player.getAthleticism() > 12) { value +=1; }
+        if(player.getSpeed() > 8) { value += 2;}
+        else if(player.getSpeed() > 6) { value +=1; }
 
-        if(player.getSize() > 18) { value += 3;}
-        else if(player.getSize() > 16) { value += 2;}
-        else if(player.getSize() > 14) { value +=1; }
+        if(player.getEgo() > 9) { value += 3;}
+        else if(player.getEgo() > 7) { value +=1; }
 
-        if(player.getSpeed() > 17) { value += 2;}
-        else if(player.getSpeed() > 13) { value +=1; }
-
-        if(player.getEgo() > 18) { value += 3;}
-        else if(player.getEgo() > 15) { value +=1; }
-
-        if(player.getEgo() < 2) { value -= 4;}
-        else if(player.getEgo() < 4) { value -=2; }
-
-        if(player.getEndurance() < 2) { value -= 3;}
-        else if(player.getEndurance() < 3) { value -=2; }
-        else if(player.getEndurance() < 5) { value -=1; }
-
-        if(player.getSize() < 2) { value -= 4;}
-        else if(player.getSize() < 3) { value -=3; }
-        else if(player.getSize() < 5) { value -=2; }
-        else if(player.getSize() < 7) { value -=1; }
-
-        if(player.getDetermination() < 2) { value -= 4;}
-        else if(player.getDetermination() < 3) { value -=3; }
-        else if(player.getDetermination() < 5) { value -=2; }
-        else if(player.getDetermination() < 7) { value -=1; }
-
+        if(player.getEgo() < 2) { value -= 3;}
+        else if(player.getEgo() < 3) { value -=1.5; }
+        value = adjustValueDown(player.getEndurance(), value);
+        value = adjustValueDown(player.getSize(), value);
+        value = adjustValueDown(player.getDetermination(), value);
         return round(value);
+    }
+
+    private double adjustValueUp(int attrib,  double value) {
+        if(attrib > 9) { value += 3.5;}
+        else if(attrib > 8) { value += 2.5;}
+        else if(attrib > 7) { value +=1.5; }
+        else if(attrib > 6) { value +=1; }
+        return value;
+    }
+
+    private double adjustValueDown(int attrib,  double value) {
+        if(attrib < 1) { value -= 4;}
+        else if(attrib < 2) { value -=3.5; }
+        else if(attrib < 3) { value -=2; }
+        else if(attrib < 4) { value -=1; }
+        return value;
     }
 }

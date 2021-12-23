@@ -18,13 +18,13 @@ public class TeamDefenseSkillCalculatorTest extends SkillSetCalculatorUnitTest {
 
     @Test
     public void ensureHighPersonReturnsExpected() {
-        player.setCohesion(17);
-        assertPlayer(15.3d, calc);
+        player.setCohesion(10);
+        assertPlayer(12.7, calc);
     }
 
     @Test
     public void ensureSlowReturnsExpected() {
         player.setSpeed(2);
-        assertPlayer(6.7d, calc);
+        assertPlayer(2.5d, calc);
     }
 }
