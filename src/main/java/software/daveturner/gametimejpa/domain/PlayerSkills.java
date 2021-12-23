@@ -21,9 +21,6 @@ public class PlayerSkills implements Serializable {
 
     public PlayerSkills() { }
 
-    public PlayerSkills(Player player) {
-    }
-
     public BigDecimal getAcumen() {
         return acumen;
     }

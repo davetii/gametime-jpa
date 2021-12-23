@@ -1,15 +1,22 @@
 package software.daveturner.gametimejpa.mapper;
 
+
 import org.springframework.stereotype.Component;
 import software.daveturner.gametimejpa.domain.*;
 import software.daveturner.gametimejpa.entity.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Component
 public class DomainEntityMapper {
+
+    private final SkillMapper skillMapper;
+
+    public DomainEntityMapper(SkillMapper skillMapper) {
+        this.skillMapper = skillMapper;
+    }
+
 
     public Set<ConferenceInfo> mapLeague(List<ConferenceEntity> entities) {
         Set<ConferenceInfo> set = new HashSet<>();
@@ -61,7 +68,7 @@ public class DomainEntityMapper {
         player.setDetermination(e.getDetermination());
         player.setEgo(e.getEgo());
         player.setEndurance(e.getEndurance());
-        player.setEgo(e.getEgo());
+        player.setEnergy(e.getEnergy());
         player.setHandle(e.getHandle());
         player.setHealth(e.getHealth());
         player.setIntelligence(e.getIntelligence());
@@ -71,7 +78,8 @@ public class DomainEntityMapper {
         player.setSize(e.getSize());
         player.setStrength(e.getStrength());
         player.setSpeed(e.getSpeed());
-        player.setSkills(new PlayerSkills(player));
+        player.setYearsPro(e.getYearsPro());
+        player.setSkills(skillMapper.mapSkills(player));
         return player;
     }
 
