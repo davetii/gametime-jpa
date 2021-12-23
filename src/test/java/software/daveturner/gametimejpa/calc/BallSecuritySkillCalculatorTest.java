@@ -1,12 +1,9 @@
 package software.daveturner.gametimejpa.calc;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class BallSecuritySkillCalculatorTest extends SkillSetCalculatorUnitTest{
-
-    BallSecuritySkillCalculator calc;
 
     @BeforeEach
     public void setup() {
@@ -14,30 +11,26 @@ public class BallSecuritySkillCalculatorTest extends SkillSetCalculatorUnitTest{
         player  = BASE_PLAYER();
     }
 
-    private void assertPLayer(double d) {
-        Assertions.assertEquals(calc.calc(player), calc.round(d));
-    }
-
     @Test
     public void ensureAverageBallSecurityReturnsExpected() {
-        assertPLayer(AVERAGE_SKILLSET);
+        assertPlayer(AVERAGE_SKILLSET, calc);
     }
 
     @Test
     public void ensureHighEnergyAffectsBallSecurity() {
         player.setEnergy(19);
-        assertPLayer(8d);
+        assertPlayer(8d, calc);
     }
 
     @Test
     public void ensureHighEgoAffectsBallSecurity() {
         player.setEgo(19);
-        assertPLayer(8d);
+        assertPlayer(8d, calc);
     }
 
     @Test
     public void ensureHighEnduranceAffectsBallSecurity() {
         player.setEndurance(18);
-        assertPLayer(13d);
+        assertPlayer(13d, calc);
     }
 }

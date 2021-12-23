@@ -214,7 +214,7 @@ public class DomainEntityMapperTest {
         playerEntity.setDetermination(TESTATTRIB);
         playerEntity.setEgo(TESTATTRIB);
         playerEntity.setEndurance(TESTATTRIB);
-        playerEntity.setEgo(TESTATTRIB);
+        playerEntity.setEnergy(TESTATTRIB);
         playerEntity.setHandle(TESTATTRIB);
         playerEntity.setHealth(TESTATTRIB);
         playerEntity.setIntelligence(TESTATTRIB);
@@ -224,6 +224,7 @@ public class DomainEntityMapperTest {
         playerEntity.setSize(TESTATTRIB);
         playerEntity.setStrength(TESTATTRIB);
         playerEntity.setSpeed(TESTATTRIB);
+        playerEntity.setYearsPro(4);
         return playerEntity;
     }
 

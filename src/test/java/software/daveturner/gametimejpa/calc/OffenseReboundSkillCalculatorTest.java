@@ -1,4 +1,12 @@
 package software.daveturner.gametimejpa.calc;
 
-public class OffenseReboundSkillCalculatorTest extends SkillSetCalculatorUnitTest{
+import org.junit.jupiter.api.BeforeEach;
+
+public class OffenseReboundSkillCalculatorTest extends SkillSetCalculatorUnitTest {
+
+    @BeforeEach
+    public void setup() {
+        calc = new OffenseReboundSkillCalculator();
+        player  = BASE_PLAYER();
+    }
 }

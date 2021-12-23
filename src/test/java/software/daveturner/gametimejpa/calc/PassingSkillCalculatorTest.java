@@ -1,4 +1,12 @@
 package software.daveturner.gametimejpa.calc;
 
-public class PassingSkillCalculatorTest extends SkillSetCalculatorUnitTest{
+import org.junit.jupiter.api.BeforeEach;
+
+public class PassingSkillCalculatorTest extends SkillSetCalculatorUnitTest {
+
+    @BeforeEach
+    public void setup() {
+        calc = new PassingSkillCalculator();
+        player  = BASE_PLAYER();
+    }
 }

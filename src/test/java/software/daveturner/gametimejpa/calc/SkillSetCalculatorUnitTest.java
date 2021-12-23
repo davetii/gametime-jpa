@@ -1,5 +1,6 @@
 package software.daveturner.gametimejpa.calc;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import software.daveturner.gametimejpa.domain.Player;
 
@@ -10,6 +11,8 @@ public class SkillSetCalculatorUnitTest {
     protected static final double AVERAGE_SKILLSET = 10d;
 
     public Player player;
+
+    SkillCalculator calc;
 
     @BeforeEach
     public void setup() {
@@ -39,5 +42,9 @@ public class SkillSetCalculatorUnitTest {
         player.setSpeed(AVERAGE_ATTRIBUTE);
         player.setStrength(AVERAGE_ATTRIBUTE);
         return player;
+    }
+
+    public void assertPlayer(double d, SkillCalculator calc) {
+        Assertions.assertEquals(calc.calc(player), calc.round(d));
     }
 }

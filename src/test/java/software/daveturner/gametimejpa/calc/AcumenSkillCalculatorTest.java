@@ -3,11 +3,7 @@ package software.daveturner.gametimejpa.calc;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class AcumenSkillCalculatorTest extends SkillSetCalculatorUnitTest{
-
-    AcumenSkillCalculator calc;
 
     @BeforeEach
     public void setup() {
@@ -17,64 +13,60 @@ public class AcumenSkillCalculatorTest extends SkillSetCalculatorUnitTest{
 
     @Test
     public void ensureAverageAcumenReturnsExpected() {
-        assertCalc(AVERAGE_SKILLSET);
+        assertPlayer(AVERAGE_SKILLSET, calc);
     }
 
     @Test
     public void ensureHeightenedAgilityReturnsExpected() {
         player.setAthleticism(18);
-        assertCalc(11d);
+        assertPlayer(11d, calc);
     }
 
     @Test
     public void ensureBigEgoReturnsExpected() {
-        player.setEgo(20); assertCalc(7d);
-        player.setEgo(19); assertCalc(8d);
-        player.setEgo(18); assertCalc(9d);
-        player.setEgo(17); assertCalc(AVERAGE_SKILLSET);
+        player.setEgo(20); assertPlayer(7d, calc);
+        player.setEgo(19); assertPlayer(8d, calc);
+        player.setEgo(18); assertPlayer(9d, calc);
+        player.setEgo(17); assertPlayer(AVERAGE_SKILLSET, calc);
     }
 
     @Test
     public void ensureExtraHandleReturnsExpected() {
-        player.setHandle(20); assertCalc(15.7d);
-        player.setHandle(19); assertCalc(14.5d);
-        player.setHandle(18); assertCalc(13.3d);
-        player.setHandle(17); assertCalc(12.2d);
-        player.setHandle(16); assertCalc(11.0d);
+        player.setHandle(20); assertPlayer(15.7d, calc);
+        player.setHandle(19); assertPlayer(14.5d, calc);
+        player.setHandle(18); assertPlayer(13.3d, calc);
+        player.setHandle(17); assertPlayer(12.2d, calc);
+        player.setHandle(16); assertPlayer(11.0d, calc);
     }
 
     @Test
     public void ensureVetReturnsExpected() {
         player.setYearsPro(12);
-        assertCalc(14d);
+        assertPlayer(14d, calc);
 
         player.setYearsPro(9);
-        assertCalc(12.5);
+        assertPlayer(12.5, calc);
 
         player.setYearsPro(8);
-        assertCalc(12d);
+        assertPlayer(12d, calc);
 
         player.setYearsPro(6);
-        assertCalc(11d);
+        assertPlayer(11d, calc);
 
         player.setYearsPro(5);
-        assertCalc(AVERAGE_SKILLSET);
+        assertPlayer(AVERAGE_SKILLSET, calc);
 
         player.setYearsPro(1);
-        assertCalc(8d);
+        assertPlayer(8d, calc);
 
         player.setYearsPro(2);
-        assertCalc(9d);
-    }
-
-    private void assertCalc(double d) {
-        assertEquals(calc.round(d), calc.calc(player));
+        assertPlayer(9d, calc);
     }
 
     @Test
     public void ensureAgilityEgoMixReturnsExpected() {
         player.setEgo(20);
         player.setAthleticism(19);
-        assertCalc(8d);
+        assertPlayer(8d, calc);
     }
 }

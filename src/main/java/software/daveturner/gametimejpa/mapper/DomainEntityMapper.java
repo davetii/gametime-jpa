@@ -68,7 +68,7 @@ public class DomainEntityMapper {
         player.setDetermination(e.getDetermination());
         player.setEgo(e.getEgo());
         player.setEndurance(e.getEndurance());
-        player.setEgo(e.getEgo());
+        player.setEnergy(e.getEnergy());
         player.setHandle(e.getHandle());
         player.setHealth(e.getHealth());
         player.setIntelligence(e.getIntelligence());
@@ -78,6 +78,7 @@ public class DomainEntityMapper {
         player.setSize(e.getSize());
         player.setStrength(e.getStrength());
         player.setSpeed(e.getSpeed());
+        player.setYearsPro(e.getYearsPro());
         player.setSkills(skillMapper.mapSkills(player));
         return player;
     }

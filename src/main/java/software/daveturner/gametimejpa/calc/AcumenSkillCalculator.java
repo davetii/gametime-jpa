@@ -60,16 +60,16 @@ public class AcumenSkillCalculator implements SkillCalculator{
         else if(player.getShotSelection() > 18) { value += 2;}
         else if(player.getShotSelection() > 17) { value += 1;}
 
-        if(player.getYearsPro() != null) {
-            if(player.getYearsPro() > 11) { value += 4;}
-            else if(player.getYearsPro() > 10) { value += 3.5d;}
-            else if(player.getYearsPro() > 9) { value += 3;}
-            else if(player.getYearsPro() > 8) { value += 2.5d;}
-            else if(player.getYearsPro() > 7) { value += 2;}
-            else if(player.getYearsPro() > 5) { value += 1;}
-            if(player.getYearsPro() == 1) { value -= 2;}
-            else if(player.getYearsPro() == 2) { value -= 1;}
-        }
+        if(player.getYearsPro() > 11) { value += 4;}
+        else if(player.getYearsPro() > 10) { value += 3.5d;}
+        else if(player.getYearsPro() > 9) { value += 3;}
+        else if(player.getYearsPro() > 8) { value += 2.5d;}
+        else if(player.getYearsPro() > 7) { value += 2;}
+        else if(player.getYearsPro() > 5) { value += 1;}
+
+        if(player.getYearsPro() == 1) { value -= 2;}
+        else if(player.getYearsPro() == 2) { value -= 1;}
+
         return round(value);
     }
 }
