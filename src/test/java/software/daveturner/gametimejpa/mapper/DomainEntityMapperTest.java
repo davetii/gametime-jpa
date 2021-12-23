@@ -1,6 +1,5 @@
 package software.daveturner.gametimejpa.mapper;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,9 +30,6 @@ public class DomainEntityMapperTest {
 
     @Autowired
     DomainEntityMapper mapper;
-
-    @BeforeEach
-    public void setup() { }
 
     @Test
     public void entityToTeamInfoWithNullValuesReturnsExpected() {

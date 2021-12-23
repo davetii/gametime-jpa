@@ -1,6 +1,5 @@
 package software.daveturner.gametimejpa.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import software.daveturner.gametimejpa.domain.ConferenceInfo;
 import software.daveturner.gametimejpa.domain.PlayerInfo;
@@ -24,10 +23,10 @@ import static java.lang.Long.valueOf;
 @Service
 public class V1ApiServiceImpl implements V1ApiService {
 
-    private ConferenceRepo conferenceRepo;
-    private TeamRepo teamRepo;
-    private PlayerRepo playerRepo;
-    private DomainEntityMapper mapper;
+    private final ConferenceRepo conferenceRepo;
+    private final TeamRepo teamRepo;
+    private final PlayerRepo playerRepo;
+    private final DomainEntityMapper mapper;
 
 
     public V1ApiServiceImpl(ConferenceRepo conferenceRepo, TeamRepo teamRepo, PlayerRepo playerRepo, DomainEntityMapper mapper) {

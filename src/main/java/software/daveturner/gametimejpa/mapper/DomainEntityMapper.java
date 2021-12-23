@@ -1,11 +1,9 @@
 package software.daveturner.gametimejpa.mapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import software.daveturner.gametimejpa.domain.*;
 import software.daveturner.gametimejpa.entity.*;
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +11,7 @@ import java.util.Set;
 @Component
 public class DomainEntityMapper {
 
-    private SkillMapper skillMapper;
+    private final SkillMapper skillMapper;
 
     public DomainEntityMapper(SkillMapper skillMapper) {
         this.skillMapper = skillMapper;

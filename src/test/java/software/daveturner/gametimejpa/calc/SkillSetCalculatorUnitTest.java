@@ -3,8 +3,6 @@ package software.daveturner.gametimejpa.calc;
 import org.junit.jupiter.api.BeforeEach;
 import software.daveturner.gametimejpa.domain.Player;
 
-import java.math.BigDecimal;
-
 public class SkillSetCalculatorUnitTest {
 
     protected static final int AVERAGE_ATTRIBUTE = 10;

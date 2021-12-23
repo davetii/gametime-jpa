@@ -2,12 +2,11 @@ package software.daveturner.gametimejpa.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import software.daveturner.gametimejpa.calc.*;
 import software.daveturner.gametimejpa.domain.Player;
 import software.daveturner.gametimejpa.domain.PlayerSkills;
 
-@Service
+@Component
 public class SkillMapper {
 
     @Autowired
@@ -54,6 +53,7 @@ public class SkillMapper {
         skills.setAcumen(acumenSkillCalculator.calc(player));
         skills.setBallSecurity(ballSecuritySkillCalculator.calc(player));
         skills.setDefenseRebound(defenseReboundSkillCalculator.calc(player));
+        skills.setDrive(driveSkillCalculator.calc(player));
         skills.setFreeThrows(freeThrowSkillCalculator.calc(player));
         skills.setIndividualDefense(individualDefenseSkillCalculator.calc(player));
         skills.setLongRange(longRangeSkillCalculator.calc(player));
