@@ -2,11 +2,14 @@ package software.daveturner.gametimejpa.mapper;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import software.daveturner.gametimejpa.domain.*;
 import software.daveturner.gametimejpa.entity.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class DomainEntityMapperTest {
 
     public static final String GMFIRSTNAME = "gmfirstname";
@@ -26,13 +29,11 @@ public class DomainEntityMapperTest {
     public static final String TEAMLOCALE = "TEAM_LOCALE";
     public static final String TEAMNAME = "TEAM_NAME";
 
-
+    @Autowired
     DomainEntityMapper mapper;
 
     @BeforeEach
-    public void setup() {
-        mapper = new DomainEntityMapper();
-    }
+    public void setup() { }
 
     @Test
     public void entityToTeamInfoWithNullValuesReturnsExpected() {
