@@ -41,6 +41,7 @@ public class SkillSetCalculatorUnitTest {
         player.setSize(AVERAGE_ATTRIBUTE);
         player.setSpeed(AVERAGE_ATTRIBUTE);
         player.setStrength(AVERAGE_ATTRIBUTE);
+        player.setYearsPro(4);
         return player;
     }
 
