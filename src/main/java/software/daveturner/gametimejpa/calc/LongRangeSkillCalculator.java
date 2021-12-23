@@ -18,7 +18,6 @@ public class LongRangeSkillCalculator implements SkillCalculator {
         if(player.getShotSelection() > 19) { value += 6; }
         else if(player.getShotSelection() > 18) { value += 5; }
         else if(player.getShotSelection() > 17) { value += 3.5; }
-        else if(player.getShotSelection() > 17) { value += 3; }
         else if(player.getShotSelection() > 16) { value += 2.5; }
         else if(player.getShotSelection() > 15) { value += 2; }
         else if(player.getShotSelection() > 12) { value += 1; }

@@ -19,7 +19,6 @@ public class PerimeterScoringSkillCalculator implements SkillCalculator {
         if(player.getShotSkill() > 19) { value += 7; }
         else if(player.getShotSkill() > 18) { value += 5; }
         else if(player.getShotSkill() > 17) { value += 3.5; }
-        else if(player.getShotSkill() > 17) { value += 3; }
         else if(player.getShotSkill() > 16) { value += 2.5; }
         else if(player.getShotSkill() > 15) { value += 2; }
         else if(player.getShotSkill() > 12) { value += 1; }
