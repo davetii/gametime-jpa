@@ -9,6 +9,30 @@ import java.math.BigDecimal;
 public class TeamOffenseSkillCalculator implements SkillCalculator {
     @Override
     public BigDecimal calc(Player player) {
-        return null;
+
+        /*
+        ego
+        energy
+        intel
+        cohesion
+        shot select
+        shot skill
+        determination
+        handle
+         */
+        double value = (
+                (player.getIntelligence() * 2) +
+                        player.getHandle() +
+                        player.getEnergy() +
+                        player.getShotSkill() +
+                        player.getShotSelection() +
+                        player.getDetermination() +
+                        (player.getCohesion()*2)) / 9d;
+
+        if(player.getEgo() > 18) { value -= 3;}
+        else if(player.getEgo() > 17) { value -= 2;}
+        else if(player.getEgo() > 15) { value -= 1;}
+
+        return round(value);
     }
 }
