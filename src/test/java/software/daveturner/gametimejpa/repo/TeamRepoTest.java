@@ -42,10 +42,10 @@ public class TeamRepoTest extends BaseJPATest {
         TeamEntity newTeam = teamRepo.save( helper.newTeam("TEST", "Nowhere", "testeteam"));
         teamRepo.save(newTeam);
 
-        PlayerEntity player1 = helper.newPlayer("Test", "Player1");
+        PlayerEntity player1 = helper.newPlayer("123", "Test", "Player1");
         playerRepo.save(player1);
 
-        PlayerEntity player2 = helper.newPlayer("Test", "Player2");
+        PlayerEntity player2 = helper.newPlayer("124", "Test", "Player2");
         playerRepo.save(player2);
 
         player1.setTeam(newTeam);

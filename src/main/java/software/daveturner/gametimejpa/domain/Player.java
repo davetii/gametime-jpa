@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Player implements Serializable {
 
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private Position position;
@@ -12,8 +12,11 @@ public class Player implements Serializable {
     private String height;
     private Integer weight;
     private Integer yearsPro;
+    private String draftSlot;
     private String origin;
     private String originDetails;
+
+
 
     private Integer athleticism;
     private Integer charisma;
@@ -36,11 +39,11 @@ public class Player implements Serializable {
 
     private PlayerSkills skills;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -243,6 +246,10 @@ public class Player implements Serializable {
     public void setStrength(Integer strength) {
         this.strength = strength;
     }
+
+    public String getDraftSlot() { return draftSlot; }
+
+    public void setDraftSlot(String draftSlot) { this.draftSlot = draftSlot; }
 
     public PlayerSkills getSkills() {
         return skills;

@@ -42,11 +42,10 @@ public class V1ApiController {
     @GetMapping("/player/{id}")
     public ResponseEntity<PlayerInfo> getPlayer(@PathVariable String id) {
         try {
-            Long.valueOf(id);
+            return (ResponseEntity<PlayerInfo>) handleOptionalResponse(apiService.getPlayer(id));
         }catch(Exception e) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
-        return (ResponseEntity<PlayerInfo>) handleOptionalResponse(apiService.getPlayer(id));
     }
 
     private ResponseEntity<?> handleOptionalResponse(Optional<?> optional) {

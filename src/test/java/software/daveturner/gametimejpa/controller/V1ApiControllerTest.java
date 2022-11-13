@@ -135,7 +135,7 @@ public class V1ApiControllerTest extends BaseJPATest {
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePlayerReturnsExpected() {
         PlayerInfo playerInfo = this.restTemplate.getForObject("http://localhost:" + port + "/api/v1/gametime/player/999", PlayerInfo.class);
-        assertEquals(999L, playerInfo.getPlayer().getId());
+        assertEquals("999", playerInfo.getPlayer().getId());
         assertEquals("Tony", playerInfo.getPlayer().getFirstName());
         assertEquals("Hawk", playerInfo.getPlayer().getLastName());
         assertEquals(Position.PG, playerInfo.getPlayer().getPosition());

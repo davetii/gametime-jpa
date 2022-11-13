@@ -28,8 +28,9 @@ public class RepoTestHelper {
         return coach;
     }
 
-    public PlayerEntity newPlayer(String firstName, String lastName) {
+    public PlayerEntity newPlayer(String id, String firstName, String lastName) {
         PlayerEntity player = new PlayerEntity();
+        player.setId(id);
         player.setFirstName(firstName);
         player.setLastName(lastName);
         return player;

@@ -79,6 +79,7 @@ public class DomainEntityMapper {
         player.setStrength(e.getStrength());
         player.setSpeed(e.getSpeed());
         player.setYearsPro(e.getYearsPro());
+        player.setDraftSlot(e.getDraftSlot());
         player.setSkills(skillMapper.mapSkills(player));
         return player;
     }
