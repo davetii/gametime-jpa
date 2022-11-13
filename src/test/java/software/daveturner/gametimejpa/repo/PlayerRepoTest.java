@@ -17,7 +17,7 @@ public class PlayerRepoTest extends BaseJPATest{
     public void ensureAPIReturnsExpected() {
         long currentCount = (int) playerRepo.count();
 
-        PlayerEntity player = helper.newPlayer("Test", "Player1");
+        PlayerEntity player = helper.newPlayer("234", "Test", "Player1");
         player.setPosition(PG);
         player.setRole(STARTER);
         player = playerRepo.save(player);
@@ -31,7 +31,7 @@ public class PlayerRepoTest extends BaseJPATest{
     @Transactional
     public void ensureAddingTeamReturnsExpected() {
 
-        PlayerEntity player = helper.newPlayer("Test", "Player1");
+        PlayerEntity player = helper.newPlayer("345","Test", "Player1");
         player.setPosition(PG);
         player.setRole(STARTER);
         playerRepo.save(player);

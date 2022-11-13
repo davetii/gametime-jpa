@@ -5,6 +5,7 @@ import software.daveturner.gametimejpa.domain.Position;
 import software.daveturner.gametimejpa.domain.Role;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 
 @Entity
@@ -15,8 +16,7 @@ public class PlayerEntity {
     public PlayerEntity() { }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
 
@@ -29,6 +29,7 @@ public class PlayerEntity {
     private String height;
     private Integer weight;
     private Integer yearsPro;
+    private String draftSlot;
     private String origin;
     private String originDetails;
 
@@ -63,11 +64,11 @@ public class PlayerEntity {
         this.team = team;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -117,6 +118,14 @@ public class PlayerEntity {
 
     public void setYearsPro(Integer yearsPro) {
         this.yearsPro = yearsPro;
+    }
+
+    public String getDraftSlot() {
+        return draftSlot;
+    }
+
+    public void setDraftSlot(String draftSlot) {
+        this.draftSlot = draftSlot;
     }
 
     public String getOrigin() {

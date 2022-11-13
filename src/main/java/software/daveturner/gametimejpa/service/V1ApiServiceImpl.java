@@ -58,7 +58,7 @@ public class V1ApiServiceImpl implements V1ApiService {
 
     @Override
     public Optional<PlayerInfo> getPlayer(String playerId) {
-        Optional<PlayerEntity> entity = playerRepo.findById(valueOf(playerId));
+        Optional<PlayerEntity> entity = playerRepo.findById(playerId);
         return entity.map(playerEntity -> mapper.entityToPlayerInfo(playerEntity));
     }
 }

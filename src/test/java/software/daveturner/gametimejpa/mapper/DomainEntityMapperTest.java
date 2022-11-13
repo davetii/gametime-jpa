@@ -14,7 +14,8 @@ public class DomainEntityMapperTest {
     public static final String GMFIRSTNAME = "gmfirstname";
     private static final String PLAYERFIRSTNAME = "TEST_FIRST_NAME";
     private static final String PLAYERLASTNAME = "TEST_LAST_NAME";
-    private static final long TESTID = 999L;
+    private static final String TESTID = "999";
+    private static final long COACH_TESTID = 999L;
     private static final String TEST_NAME = "TEST_NAME";
     private static final String TEST_ID_STRING = "TEST_ID_STRING";
     private static final String TEST_LOCALE = "TEST_LOCALE";
@@ -72,7 +73,7 @@ public class DomainEntityMapperTest {
         Coach coach = mapper.entityToCoach(testCoachEntity());
         assertEquals(COACHFIRSTNAME, coach.getFirstName());
         assertEquals(COACHLASTNAME, coach.getLastName());
-        assertEquals(TESTID, coach.getId());
+        assertEquals(COACH_TESTID, coach.getId());
     }
 
     @Test
@@ -80,11 +81,11 @@ public class DomainEntityMapperTest {
         GMEntity e = new GMEntity();
         e.setFirstName(PLAYERFIRSTNAME);
         e.setLastName(PLAYERLASTNAME);
-        e.setId(TESTID);
+        e.setId(COACH_TESTID);
         GM gm = mapper.entityToGm(e);
         assertEquals(PLAYERFIRSTNAME, gm.getFirstName());
         assertEquals(PLAYERLASTNAME, gm.getLastName());
-        assertEquals(TESTID, gm.getId());
+        assertEquals(COACH_TESTID, gm.getId());
     }
 
     @Test
@@ -187,7 +188,7 @@ public class DomainEntityMapperTest {
 
     private CoachEntity testCoachEntity() {
         CoachEntity entity = new CoachEntity();
-        entity.setId(TESTID);
+        entity.setId(COACH_TESTID);
         entity.setFirstName(COACHFIRSTNAME);
         entity.setLastName(COACHLASTNAME);
         return entity;
@@ -195,7 +196,7 @@ public class DomainEntityMapperTest {
 
     private GMEntity testGMEntity() {
         GMEntity entity = new GMEntity();
-        entity.setId(TESTID);
+        entity.setId(COACH_TESTID);
         entity.setFirstName(GMFIRSTNAME);
         entity.setLastName(GMLASTNAME);
         return entity;

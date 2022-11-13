@@ -21,7 +21,7 @@ public class SkillSetCalculatorUnitTest {
 
     protected Player BASE_PLAYER() {
         Player player = new Player();
-        player.setId(1L);
+        player.setId("1L");
         player.setFirstName("firstname");
         player.setLastName("lastname");
         player.setYearsPro(DEFAULT_YEARS_PRO);

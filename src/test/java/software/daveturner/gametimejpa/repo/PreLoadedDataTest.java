@@ -64,14 +64,14 @@ public class PreLoadedDataTest extends BaseJPATest{
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensureTeamReturnsExpectedPlayers() {
         assertEquals(13, teamRepo.findById("MI").get().getPlayers().size());
-        assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById(999L).get()));
+        assertTrue(teamRepo.findById("MI").get().getPlayers().contains(playerRepo.findById("999").get()));
     }
 
     @Test
     @Sql(scripts = {"/preloaded-data-tests.sql"},
             config = @SqlConfig(encoding = "utf-8", transactionMode = SqlConfig.TransactionMode.ISOLATED))
     public void ensurePlayerReturnsExpected() {
-        PlayerEntity tonyHawk = playerRepo.findById(999L).get();
+        PlayerEntity tonyHawk = playerRepo.findById("999").get();
         assertEquals(tonyHawk.getPosition(), PG);
         assertEquals(tonyHawk.getRole(), STARTER);
     }
